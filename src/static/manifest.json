@@ -1,0 +1,13 @@
+{
+  "name": "Broadway UTT",
+  "short_name": "Broadway UTT",
+  "icons": [{
+    "src": "/static/images/logo.jpg",
+    "type": "image/jpeg",
+    "sizes": "192x192 512x512"
+  }],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#202020",
+  "background_color": "#202020"
+}
