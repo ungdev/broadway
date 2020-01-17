@@ -1,0 +1,36 @@
+language: node_js
+
+node_js:
+  - "lts/*"
+
+branches:
+  only:
+    - master
+    - dev
+
+cache: yarn
+
+script:
+  - yarn
+  - yarn lint
+
+notifications:
+  slack: $SLACK_TOKEN
+
+deploy:
+  - provider: openshift
+    server: $OPENSHIFT_SERVER
+    project: broadway
+    app: website-dev
+    token: $OPENSHIFT_TOKEN
+    on:
+      branch: dev
+    edge: true
+  - provider: openshift
+    server: $OPENSHIFT_SERVER
+    project: broadway
+    app: website-prod
+    token: $OPENSHIFT_TOKEN
+    on:
+      branch: master
+    edge: true
