@@ -1,5 +1,3 @@
-import { State, Action } from '../types';
-
-export default (state = 50, action: Action) => {
+export default (state = 50) => {
 	return state;
 };

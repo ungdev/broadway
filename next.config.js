@@ -19,7 +19,6 @@ const nextJSConfig = {
 
 		return config;
 	},
-	useFileSystemPublicRoutes: false,
 };
 
 module.exports = withPlugins([withCss, withSass, withImages], nextJSConfig);
