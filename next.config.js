@@ -21,4 +21,7 @@ const nextJSConfig = {
 	},
 };
 
+// eslint-disable-next-line no-console
+console.log(`Starting application with NODE_ENV=${process.env.NODE_ENV}`);
+
 module.exports = withPlugins([withCss, withSass, withImages], nextJSConfig);

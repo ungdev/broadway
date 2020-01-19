@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - "lts/*"
+  - 'lts/*'
 
 branches:
   only:
@@ -15,7 +15,7 @@ script:
   - yarn lint
 
 notifications:
-  slack: $SLACK_TOKEN
+  slack: uttnetgroup:dub9msi1fvNcpb1M5Wnmpuxo
 
 deploy:
   - provider: openshift
