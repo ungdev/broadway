@@ -1,14 +1,13 @@
 import React from 'react';
 import Countdown from 'react-countdown-now';
-import PropTypes from 'prop-types';
 
 import './Countdown.scss';
 
 /**
  * Displays a countdown to the specified date
  */
-const CountdownComponent = ({ date, className }) => {
-	const renderer = ({ days, hours, minutes, seconds, completed }) => {
+const CountdownComponent = ({ date, className }: CountdownProps) => {
+	const renderer = ({ days, hours, minutes, seconds, completed }: RendererProps) => {
 		if (completed) {
 			return null;
 		}
@@ -35,14 +34,6 @@ const CountdownComponent = ({ date, className }) => {
 		);
 	};
 
-	renderer.propTypes = {
-		days: PropTypes.number.isRequired,
-		hours: PropTypes.number.isRequired,
-		minutes: PropTypes.number.isRequired,
-		seconds: PropTypes.number.isRequired,
-		completed: PropTypes.bool.isRequired,
-	};
-
 	return (
 		<div className={`countdown ${className}`}>
 			<Countdown date={date} renderer={renderer} />
@@ -50,19 +41,23 @@ const CountdownComponent = ({ date, className }) => {
 	);
 };
 
-CountdownComponent.propTypes = {
+interface CountdownProps {
 	/**
 	 * The date from which the remaining time will be computed
 	 */
-	date: PropTypes.object.isRequired,
+	date: Date;
 	/**
 	 * Class of the container
 	 */
-	className: PropTypes.string,
-};
+	className: string;
+}
 
-CountdownComponent.defaultProps = {
-	className: '',
-};
+interface RendererProps {
+	days: number;
+	hours: number;
+	minutes: number;
+	seconds: number;
+	completed: boolean;
+}
 
 export default CountdownComponent;

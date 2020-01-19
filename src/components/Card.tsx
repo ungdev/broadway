@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
@@ -10,7 +9,7 @@ import './Card.scss';
 /**
  * Displays a card which can contain an image, a content and a button
  */
-const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, className, classNameImg }) => {
+const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, className, classNameImg }: CardProps) => {
 	let button = (
 		<Button primary onClick={onClick}>
 			{buttonContent}
@@ -39,55 +38,43 @@ const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, cla
 	);
 };
 
-Card.propTypes = {
+interface CardProps {
 	/**
 	 * Whether the card should use dark theme or not
 	 */
-	dark: PropTypes.bool,
+	dark?: boolean;
 	/**
 	 * Source of the image to display above
 	 */
-	imgSrc: PropTypes.string,
+	imgSrc?: string;
 	/**
 	 * Content of the card
 	 */
-	content: PropTypes.node,
+	content?: ReactNode;
 	/**
 	 * Content of the button
 	 */
-	buttonContent: PropTypes.node,
+	buttonContent?: ReactNode;
 	/**
 	 * Function called when the user clicks on the button
 	 */
-	onClick: PropTypes.func,
+	onClick?: () => void;
 	/**
 	 * Link URL surrounding the button
 	 */
-	href: PropTypes.string,
+	href?: string;
 	/**
 	 * Target for the link
 	 */
-	target: PropTypes.string,
+	target?: string;
 	/**
 	 * Class of the card
 	 */
-	className: PropTypes.string,
+	className?: string;
 	/**
 	 * Class of the image
 	 */
-	classNameImg: PropTypes.string,
-};
-
-Card.defaultProps = {
-	dark: false,
-	imgSrc: null,
-	content: null,
-	buttonContent: '',
-	onClick: () => {},
-	href: null,
-	target: '_self',
-	className: '',
-	classNameImg: '',
-};
+	classNameImg?: string;
+}
 
 export default Card;

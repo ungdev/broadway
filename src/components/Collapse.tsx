@@ -1,25 +1,28 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useRef, ReactNode } from 'react';
 
 import './Collapse.scss';
 
 /**
  * Display an extension panel
  */
-const Collapse = ({ title, children, className }) => {
-	const contentRef = useRef(null);
+const Collapse = ({ title, children, className }: CollapseProps) => {
+	const contentRef = useRef<HTMLDivElement>(null);
 	const [contentHeight, setContentHeight] = useState(0);
 	const [contentVisible, setContentVisible] = useState(false);
 
 	// Set contentHeight when the visibility change
-	const setVisible = (visible) => {
-		setContentHeight(contentRef.current.scrollHeight);
-		setContentVisible(visible);
+	const setVisible = (visible: boolean) => {
+		if (contentRef.current !== null) {
+			setContentHeight(contentRef.current.scrollHeight);
+			setContentVisible(visible);
+		}
 	};
 
 	// Set contentHeight when children prop change
 	useEffect(() => {
-		setContentHeight(contentRef.current.scrollHeight);
+		if (contentRef.current !== null) {
+			setContentHeight(contentRef.current.scrollHeight);
+		}
 	}, [children]);
 
 	return (
@@ -39,23 +42,19 @@ const Collapse = ({ title, children, className }) => {
 	);
 };
 
-Collapse.propTypes = {
+interface CollapseProps {
 	/**
 	 * Title of the panel
 	 */
-	title: PropTypes.node.isRequired,
+	title: ReactNode;
 	/**
 	 * Content to display when the user clicks on the title
 	 */
-	children: PropTypes.node.isRequired,
+	children: ReactNode;
 	/**
 	 * Class of the container
 	 */
-	className: PropTypes.string,
-};
-
-Collapse.defaultProps = {
-	className: '',
-};
+	className?: string;
+}
 
 export default Collapse;

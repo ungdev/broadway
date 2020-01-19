@@ -1,12 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 
 import './Button.scss';
 
 /**
  * Displays a button that triggers an action when clicked
  */
-const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disabled, noStyle, className }) => (
+const Button = ({
+	primary,
+	onClick,
+	children,
+	type,
+	leftIcon,
+	rightIcon,
+	disabled,
+	noStyle,
+	className,
+}: ButtonProps) => (
 	<button
 		type={type}
 		className={`button ${className} ${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''} ${
@@ -20,55 +29,51 @@ const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disable
 	</button>
 );
 
-Button.propTypes = {
+interface ButtonProps {
 	/**
 	 * Whether the button is a primary button or not
 	 */
-	primary: PropTypes.bool,
+	primary?: boolean;
+
 	/**
 	 * Function called when the user clicks on the button
 	 */
-	onClick: PropTypes.func,
+	onClick?: () => void;
+
 	/**
 	 * Button content
 	 */
-	children: PropTypes.node,
+	children?: ReactNode;
+
 	/**
 	 * Type button
 	 */
-	type: PropTypes.string,
-	/**
-	 * Left icon class name
-	 */
-	leftIcon: PropTypes.string,
+	type?: 'button' | 'submit' | 'reset' | undefined;
+
 	/**
 	 * Right icon class name
 	 */
-	rightIcon: PropTypes.string,
+	leftIcon?: string;
+
+	/**
+	 * Right icon class name
+	 */
+	rightIcon?: string;
+
 	/**
 	 * Is the button disabled ?
 	 */
-	disabled: PropTypes.bool,
+	disabled?: boolean;
+
 	/**
 	 * Should the button have no style ?
 	 */
-	noStyle: PropTypes.bool,
+	noStyle?: boolean;
+
 	/**
 	 * Class of the container
 	 */
-	className: PropTypes.string,
-};
-
-Button.defaultProps = {
-	primary: false,
-	onClick: () => {},
-	children: '',
-	type: 'button',
-	leftIcon: '',
-	rightIcon: '',
-	disabled: false,
-	noStyle: false,
-	className: '',
-};
+	className?: string;
+}
 
 export default Button;

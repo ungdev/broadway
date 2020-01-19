@@ -1,12 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './Table.scss';
 
 /**
  * Displays a table
  */
-const Table = ({ columns, dataSource, className, alignRight, emptyText, pagination, paginationOptions }) => (
+const Table = ({
+	columns,
+	dataSource,
+	className,
+	alignRight,
+	emptyText,
+	pagination,
+	paginationOptions,
+}: TableProps) => (
 	<div className="table-container">
 		<table className={`table ${className}`}>
 			<thead>
@@ -60,53 +67,45 @@ const Table = ({ columns, dataSource, className, alignRight, emptyText, paginati
 	</div>
 );
 
-Table.propTypes = {
+interface Column {
+	key: string;
+	title: string;
+}
+
+interface PaginationOptionsProps {
+	goToPage: (page: number) => void;
+	page: number;
+	pageSize: number;
+	total: number;
+}
+
+interface TableProps {
 	/**
 	 * Title and key of each column
 	 */
-	columns: PropTypes.arrayOf(
-		PropTypes.shape({
-			key: PropTypes.string.isRequired,
-			title: PropTypes.any.isRequired,
-		}),
-	).isRequired,
+	columns: Array<Column>;
 	/**
 	 * Data for each row, must follow the key of each column
 	 */
-	dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
+	dataSource: Array<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 	/**
 	 * Class of the table
 	 */
-	className: PropTypes.string,
+	className: string;
 	/**
 	 * Align the last column to the right
 	 */
-	alignRight: PropTypes.bool,
+	alignRight: boolean;
 	/**
 	 * Text to display if there is no data
 	 */
-	emptyText: PropTypes.string,
+	emptyText: string;
 	/**
 	 * Set pagination for the table
 	 */
-	pagination: PropTypes.bool,
-	/**
-	 *
-	 */
-	paginationOptions: PropTypes.shape({
-		goToPage: PropTypes.func,
-		page: PropTypes.number,
-		pageSize: PropTypes.number,
-		total: PropTypes.number,
-	}),
-};
+	pagination: boolean;
 
-Table.defaultProps = {
-	className: '',
-	alignRight: false,
-	emptyText: '(Vide)',
-	pagination: false,
-	paginationOptions: {},
-};
+	paginationOptions: PaginationOptionsProps;
+}
 
 export default Table;

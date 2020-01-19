@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import './Input.scss';
+import './Inputs.scss';
 
 /**
  * Displays a select
  */
-const Select = ({ label, options, value, onChange, disabled, className }) => (
+const Select = ({ label, options, value, onChange, disabled, className }: SelectProps) => (
 	<div className={`select ${className}`}>
 		<label>
 			<div className="select-label">{label}</div>
@@ -24,43 +23,37 @@ const Select = ({ label, options, value, onChange, disabled, className }) => (
 	</div>
 );
 
-Select.propTypes = {
+interface OptionProps {
+	label: string;
+	value: string | number;
+}
+
+interface SelectProps {
 	/**
 	 * Label to display
 	 */
-	label: PropTypes.string,
+	label: string;
 	/**
 	 * List of options
 	 */
-	options: PropTypes.arrayOf(
-		PropTypes.shape({
-			label: PropTypes.string.isRequired,
-			value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-		}),
-	).isRequired,
+	options: Array<OptionProps>;
 	/**
 	 * Value of the select
 	 */
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+	value: string | number;
 	/**
 	 * Function called when the value change,
 	 * the new value is passed as parameter
 	 */
-	onChange: PropTypes.func.isRequired,
+	onChange: (value: string | number) => void;
 	/**
 	 * Is the field disabled ?
 	 */
-	disabled: PropTypes.bool,
+	disabled?: boolean;
 	/**
 	 * Class of the container
 	 */
-	className: PropTypes.string,
-};
-
-Select.defaultProps = {
-	label: '',
-	disabled: false,
-	className: '',
-};
+	className?: string;
+}
 
 export default Select;

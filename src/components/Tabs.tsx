@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, ReactNode } from 'react';
 
 import './Tabs.scss';
 
 /**
  * Displays a menu with tabs
  */
-const Tabs = ({ tabs, defaultIndex, className }) => {
+const Tabs = ({ tabs, defaultIndex, className }: TabsProps) => {
 	const [index, setIndex] = useState(defaultIndex);
 
 	const tabsNav = tabs.map((tab, i) => (
@@ -38,30 +37,25 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
 	);
 };
 
-Tabs.propTypes = {
+interface TabProps {
+	title: string;
+	content: ReactNode;
+	onClick: (index: number) => void;
+}
+
+interface TabsProps {
 	/**
 	 * Tabs title and content
 	 */
-	tabs: PropTypes.arrayOf(
-		PropTypes.shape({
-			title: PropTypes.string.isRequired,
-			content: PropTypes.node.isRequired,
-			onClick: PropTypes.func,
-		}),
-	).isRequired,
+	tabs: Array<TabProps>;
 	/**
 	 * Index of the default tab
 	 */
-	defaultIndex: PropTypes.number,
+	defaultIndex: number;
 	/**
 	 * Class of the container
 	 */
-	className: PropTypes.string,
-};
-
-Tabs.defaultProps = {
-	defaultIndex: 0,
-	className: '',
-};
+	className: string;
+}
 
 export default Tabs;

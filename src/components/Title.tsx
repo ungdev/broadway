@@ -1,57 +1,51 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 
 import './Title.scss';
 
 /**
  * Displays a title
  */
-const Title = ({ level, children, gutterBottom, align, uppercase, className }) => {
+const Title = ({ level, children, gutterBottom, align, uppercase, className }: TitleProps) => {
 	const Component = `h${level}`;
 
-	return (
-		<Component
+	/* eslint-disable */
+	// prettier-ignore
+	// @ts-ignore
+	return (<Component
 			className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''} ${
 				uppercase ? 'uppercase' : ''
 			}`}>
 			<div className="title-content">{children}</div>
 		</Component>
 	);
+	/* eslint-enable */
 };
 
-Title.propTypes = {
+interface TitleProps {
 	/**
 	 * Set title importance
 	 */
-	level: PropTypes.oneOf([1, 2, 3, 4]),
+	level: 1 | 2 | 3 | 4;
 	/**
 	 * Content of the title
 	 */
-	children: PropTypes.node.isRequired,
+	children: ReactNode;
 	/**
 	 * Enable bottom margin
 	 */
-	gutterBottom: PropTypes.bool,
+	gutterBottom: boolean;
 	/**
 	 * text-align of the component
 	 */
-	align: PropTypes.oneOf(['inherit', 'center', 'justify', 'left', 'right']),
+	align: 'inherit' | 'center' | 'justify' | 'left' | 'right';
 	/**
 	 * Should the text be uppercase ?
 	 */
-	uppercase: PropTypes.bool,
+	uppercase: boolean;
 	/**
 	 * Class of the container
 	 */
-	className: PropTypes.string,
-};
-
-Title.defaultProps = {
-	level: 1,
-	gutterBottom: true,
-	align: 'inherit',
-	uppercase: false,
-	className: '',
-};
+	className: string;
+}
 
 export default Title;

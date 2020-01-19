@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 
 import './Inputs.scss';
 
@@ -18,13 +17,15 @@ const Input = ({
 	autocomplete,
 	disabled,
 	autoFocus,
-}) => {
-	const handleChange = (newValue) => {
-		if (type === 'number' && newValue !== '' && (newValue < min || newValue > max)) {
+}: InputProps) => {
+	const handleChange = (newValue: string | number) => {
+		if (type === 'number' && ((min != null && newValue < min) || (max != null && newValue > max))) {
 			return;
 		}
 
-		onChange(newValue);
+		if (onChange != null) {
+			onChange(newValue);
+		}
 	};
 
 	return (
@@ -49,66 +50,52 @@ const Input = ({
 	);
 };
 
-Input.propTypes = {
+interface InputProps {
 	/**
 	 * Input type
 	 */
-	type: PropTypes.oneOf(['text', 'email', 'password', 'number']),
+	type: 'text' | 'email' | 'password' | 'number';
 	/**
 	 * Label to display
 	 */
-	label: PropTypes.node,
+	label?: ReactNode;
 	/**
 	 * Text to display if field is blank
 	 */
-	placeholder: PropTypes.string,
+	placeholder?: string;
 	/**
 	 * Value of the input
 	 */
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	value?: string | number;
 	/**
 	 * Function called when the value change,
 	 * the new value is passed as parameter
 	 */
-	onChange: PropTypes.func,
+	onChange?: (newValue: string | number) => void;
 	/**
 	 * Minimum value (only for type="number")
 	 */
-	min: PropTypes.number,
+	min?: number;
 	/**
 	 * Maximum value (only for type="number")
 	 */
-	max: PropTypes.number,
+	max?: number;
 	/**
 	 * Class of the container
 	 */
-	className: PropTypes.string,
+	className: string;
 	/**
 	 * Autocomplete type
 	 */
-	autocomplete: PropTypes.string,
+	autocomplete: string;
 	/**
 	 * Is the input disabled ?
 	 */
-	disabled: PropTypes.bool,
+	disabled: boolean;
 	/**
 	 * Should the input have the focus by default ?
 	 */
-	autoFocus: PropTypes.bool,
-};
-
-Input.defaultProps = {
-	type: 'text',
-	label: '',
-	placeholder: '',
-	value: '',
-	onChange: () => {},
-	min: undefined,
-	max: undefined,
-	className: '',
-	autocomplete: '',
-	disabled: false,
-	autoFocus: false,
-};
+	autoFocus: boolean;
+}
 
 export default Input;

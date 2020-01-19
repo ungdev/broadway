@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './Inputs.scss';
 
 /**
  * Displays a textarea
  */
-const Textarea = ({ label, placeholder, value, onChange, className }) => (
+const Textarea = ({ label, placeholder, value, onChange, className }: TextareaProps) => (
 	<div className={`textarea ${className}`}>
 		<label>
 			<div className="textarea-label">{label}</div>
@@ -18,34 +17,28 @@ const Textarea = ({ label, placeholder, value, onChange, className }) => (
 	</div>
 );
 
-Textarea.propTypes = {
+interface TextareaProps {
 	/**
 	 * Label to display
 	 */
-	label: PropTypes.string.isRequired,
+	label: string;
 	/**
 	 * Text to show when field is blank
 	 */
-	placeholder: PropTypes.string,
+	placeholder: string;
 	/**
 	 * Value of the input
 	 */
-	value: PropTypes.string,
+	value: string;
 	/**
 	 * Function called when the value change,
 	 * the new value is passed as parameter
 	 */
-	onChange: PropTypes.func.isRequired,
+	onChange: (value: string) => void;
 	/**
 	 * Class of the container
 	 */
-	className: PropTypes.string,
-};
-
-Textarea.defaultProps = {
-	placeholder: '',
-	value: '',
-	className: '',
-};
+	className: string;
+}
 
 export default Textarea;

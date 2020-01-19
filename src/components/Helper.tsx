@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 
 import './Helper.scss';
 
-const Helper = ({ children, className }) => (
+const Helper = ({ children, className }: HelperProps) => (
 	<div className={`helper ${className}`}>
 		<i className="fas fa-question-circle helper-icon" tabIndex="0" />
 
@@ -11,19 +10,15 @@ const Helper = ({ children, className }) => (
 	</div>
 );
 
-Helper.propTypes = {
+interface HelperProps {
 	/**
 	 * To display when the cursor is hover the helper
 	 */
-	children: PropTypes.node.isRequired,
+	children: ReactNode;
 	/**
 	 * Class to apply to the container
 	 */
-	className: PropTypes.string,
-};
-
-Helper.defaultProps = {
-	className: '',
-};
+	className?: string;
+}
 
 export default Helper;

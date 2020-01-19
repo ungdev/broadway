@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 
 import './Radio.scss';
 
-const Radio = ({ label, options, name, value, onChange, row, className }) => (
+const Radio = ({ label, options, name, value, onChange, row, className }: RadioProps) => (
 	<div className={`radio ${row ? 'row' : ''} ${className}`}>
 		<div className="radio-label">{label}</div>
 
@@ -29,47 +28,40 @@ const Radio = ({ label, options, name, value, onChange, row, className }) => (
 	</div>
 );
 
-Radio.propTypes = {
+interface Option {
+	name: string;
+	value: string;
+}
+
+interface RadioProps {
 	/**
 	 * Label of the field
 	 */
-	label: PropTypes.node,
+	label: ReactNode;
 	/**
 	 * Available values
 	 */
-	options: PropTypes.arrayOf(
-		PropTypes.shape({
-			name: PropTypes.node.isRequired,
-			value: PropTypes.string.isRequired,
-		}),
-	).isRequired,
+	options: Array<Option>;
 	/**
 	 * Value of the field
 	 */
-	value: PropTypes.string.isRequired,
+	value: string;
 	/**
 	 * Function triggered when the value change
 	 */
-	onChange: PropTypes.func,
+	onChange: (value: string | number) => void;
 	/**
 	 * Used to identify a group of radio inputs
 	 */
-	name: PropTypes.string.isRequired,
+	name: string;
 	/**
 	 * Should the inputs be in a row ?
 	 */
-	row: PropTypes.bool,
+	row?: boolean;
 	/**
 	 * Class to apply to the container
 	 */
-	className: PropTypes.string,
-};
-
-Radio.defaultProps = {
-	label: '',
-	onChange: () => {},
-	row: false,
-	className: '',
-};
+	className?: string;
+}
 
 export default Radio;

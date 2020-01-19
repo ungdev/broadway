@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 
 import Button from './Button';
 
@@ -8,7 +7,17 @@ import './Modal.scss';
 /**
  * Displays a modal window
  */
-const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, className, containerClassName }) => {
+const Modal = ({
+	title,
+	children,
+	buttons,
+	visible,
+	closable,
+	onCancel,
+	onOk,
+	className,
+	containerClassName,
+}: ModalProps) => {
 	const buttonsContent =
 		buttons !== '' ? (
 			buttons
@@ -44,54 +53,44 @@ const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, cl
 	);
 };
 
-Modal.propTypes = {
+interface ModalProps {
 	/**
 	 * Modal window title
 	 */
-	title: PropTypes.node,
+	title?: ReactNode;
 	/**
 	 * Modal window content
 	 */
-	children: PropTypes.node,
+	children?: ReactNode;
 	/**
 	 * Modal window buttons. The default value is two buttons : "Annuler" and "Ok"
 	 */
-	buttons: PropTypes.node,
+	buttons?: ReactNode;
 	/**
 	 * Whether the modal window is visible or not
 	 */
-	visible: PropTypes.bool.isRequired,
+	visible?: boolean;
 	/**
 	 * Whether the modal window is closable or not
 	 */
-	closable: PropTypes.bool,
+	closable?: boolean;
 	/**
 	 * Function called when the user clicks on "Annuler" default button,
 	 * or outside the modal, or on the close button
 	 */
-	onCancel: PropTypes.func.isRequired,
+	onCancel: () => void;
 	/**
 	 * Function called when the user clicks on "Ok" default button
 	 */
-	onOk: PropTypes.func,
+	onOk?: () => void;
 	/**
 	 * Class of the modal
 	 */
-	className: PropTypes.string,
+	className?: string;
 	/**
 	 * Class of the container
 	 */
-	containerClassName: PropTypes.string,
-};
-
-Modal.defaultProps = {
-	title: '',
-	children: '',
-	buttons: '',
-	closable: true,
-	onOk: () => {},
-	className: '',
-	containerClassName: '',
-};
+	containerClassName?: string;
+}
 
 export default Modal;
