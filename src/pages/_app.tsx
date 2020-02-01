@@ -1,16 +1,18 @@
 import React from 'react';
-import withRedux from 'next-redux-wrapper';
 import NextApp, { AppContext } from 'next/app';
 import ReactGA from 'react-ga';
+import withRedux from 'next-redux-wrapper';
+import { Store } from 'redux';
+import { Provider } from 'react-redux';
 import { toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { initStore } from '../store';
 import '../types';
 
+import Navbar from '../components/Navbar';
+
 import './_app.scss';
-import { initStore } from '../store';
-import { Store } from 'redux';
-import { Provider } from 'react-redux';
 
 toast.configure({
 	autoClose: 3000,
@@ -48,7 +50,11 @@ class App extends NextApp<AppProps> {
 		this.initialiseGA();
 		return (
 			<Provider store={store}>
-				<Component {...pageProps} />
+				<Navbar />
+
+				<div id="page-content">
+					<Component {...pageProps} />
+				</div>
 			</Provider>
 		);
 	}

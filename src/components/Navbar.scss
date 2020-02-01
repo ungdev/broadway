@@ -1,0 +1,132 @@
+@import '../variables.scss';
+
+#navbar {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: $navbar-width;
+	height: 100vh;
+	background: $gradient;
+	z-index: 1;
+
+	.mobile-menu-button {
+		display: none;
+	}
+
+	.navbar-content {
+		max-height: 100vh;
+		overflow: auto;
+	}
+
+	.logo {
+		display: block;
+		margin: 30px auto;
+		width: $navbar-logo-width;
+		height: 140px; // For DEBUG purpose
+		background: $image-placeholder;
+	}
+
+	nav {
+		.nav-button {
+			position: relative;
+			display: block;
+			padding: 14px 20px;
+			color: #fff;
+			text-decoration: none;
+			cursor: pointer;
+			outline: none;
+			z-index: 1;
+
+			&::before {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 0;
+				height: 100%;
+				background: $navbar-hover-background;
+				z-index: -1;
+				transition: all 0.3s;
+			}
+
+			&.active::before,
+			&:hover::before,
+			&:focus::before {
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $breakpoint) {
+	#navbar {
+		height: $navbar-mobile-height;
+		width: 100%;
+
+		.mobile-menu-button {
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 64px;
+			height: 60px;
+			padding: 0;
+			border: none;
+			background: none;
+
+			& > div {
+				position: absolute;
+				left: 16px;
+				height: 4px;
+				width: 32px;
+				background: #fff;
+				transition: all 0.3s;
+
+				&:nth-child(1) {
+					top: 17px;
+				}
+
+				&:nth-child(2) {
+					top: 27px;
+				}
+
+				&:nth-child(3) {
+					top: 37px;
+				}
+			}
+		}
+
+		&.active {
+			.mobile-menu-button > div {
+				&:nth-child(1) {
+					transform: rotate(45deg);
+					top: calc(50% - 2px);
+				}
+
+				&:nth-child(2) {
+					transform: translateX(calc(100% + 20px));
+					opacity: 0;
+				}
+
+				&:nth-child(3) {
+					transform: rotate(-45deg);
+					top: calc(50% - 2px);
+				}
+			}
+		}
+
+		.navbar-content {
+			height: 100vh;
+			background: $gradient;
+			transition: all 0.3s;
+		}
+
+		&:not(.active) {
+			.navbar-content {
+				height: 0;
+				overflow: hidden;
+			}
+		}
+	}
+}

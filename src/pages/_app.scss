@@ -1,3 +1,24 @@
-* {
-	background-color: red;
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+@import '../variables.scss';
+
+body {
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+}
+
+#page-content {
+	position: absolute;
+	top: 0;
+	left: $navbar-width;
+	min-height: 100vh;
+	width: calc(100% - #{$navbar-width});
+
+	@media screen and (max-width: $breakpoint) {
+		top: $navbar-mobile-height;
+		left: 0;
+		width: 100%;
+		min-height: calc(100vh - #{$navbar-mobile-height});
+	}
 }
