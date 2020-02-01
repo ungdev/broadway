@@ -15,7 +15,7 @@ const Table = ({
 	paginationOptions,
 }: TableProps) => (
 	<div className="table-container">
-		<table className={`table ${className}`}>
+		<table className={`table ${className || ''}`}>
 			<thead>
 				<tr className="table-header">
 					{columns.map((column) => (

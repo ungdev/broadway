@@ -26,7 +26,7 @@ const Collapse = ({ title, children, className }: CollapseProps) => {
 	}, [children]);
 
 	return (
-		<div className={`collapse ${className} ${contentVisible ? 'active' : ''}`}>
+		<div className={`collapse ${className || ''} ${contentVisible ? 'active' : ''}`}>
 			<div className="collapse-title" onClick={() => setVisible(!contentVisible)}>
 				{title}
 

@@ -6,7 +6,7 @@ import './Inputs.scss';
  * Displays a select
  */
 const Select = ({ label, options, value, onChange, disabled, className }: SelectProps) => (
-	<div className={`select ${className}`}>
+	<div className={`select ${className || ''}`}>
 		<label>
 			<div className="select-label">{label}</div>
 

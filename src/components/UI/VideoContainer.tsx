@@ -8,7 +8,7 @@ import './VideoContainer.scss';
  * Displays iframe and keeps 16:9 ratio
  */
 const VideoContainer = ({ title, src, className }: VideoContainerProps) => (
-	<div className={`video-container ${className}`}>
+	<div className={`video-container ${className || ''}`}>
 		<div className="video-container-ratio">
 			<div className="video-container-full">
 				<iframe

@@ -31,7 +31,7 @@ const Modal = ({
 		);
 
 	return (
-		<div className={`modal ${visible ? 'active' : ''} ${className}`}>
+		<div className={`modal ${visible ? 'active' : ''} ${className || ''}`}>
 			<div className="modal-overflow">
 				<div className="modal-overlay" onClick={() => closable && onCancel()} />
 

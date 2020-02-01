@@ -29,7 +29,7 @@ const Tabs = ({ tabs, defaultIndex, className }: TabsProps) => {
 	));
 
 	return (
-		<div className={`tabs ${className}`}>
+		<div className={`tabs ${className || ''}`}>
 			<div className="tabs-nav">{tabsNav}</div>
 
 			<div className="tabs-content">{tabsContent}</div>

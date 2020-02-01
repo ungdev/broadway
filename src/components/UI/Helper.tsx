@@ -3,8 +3,8 @@ import React, { ReactNode } from 'react';
 import './Helper.scss';
 
 const Helper = ({ children, className }: HelperProps) => (
-	<div className={`helper ${className}`}>
-		<i className="fas fa-question-circle helper-icon" tabIndex="0" />
+	<div className={`helper ${className || ''}`}>
+		<i className="fas fa-question-circle helper-icon" tabIndex={0} />
 
 		<div className="helper-content">{children}</div>
 	</div>

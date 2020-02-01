@@ -18,7 +18,7 @@ const Button = ({
 }: ButtonProps) => (
 	<button
 		type={type}
-		className={`button ${className} ${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''} ${
+		className={`button ${className || ''} ${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''} ${
 			!children ? 'empty' : ''
 		}`}
 		onClick={onClick}

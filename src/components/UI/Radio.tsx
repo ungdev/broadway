@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import './Radio.scss';
 
 const Radio = ({ label, options, name, value, onChange, row, className }: RadioProps) => (
-	<div className={`radio ${row ? 'row' : ''} ${className}`}>
+	<div className={`radio ${row ? 'row' : ''} ${className || ''}`}>
 		<div className="radio-label">{label}</div>
 
 		<div className="radio-container">

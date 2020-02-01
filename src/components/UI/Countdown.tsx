@@ -35,7 +35,7 @@ const CountdownComponent = ({ date, className }: CountdownProps) => {
 	};
 
 	return (
-		<div className={`countdown ${className}`}>
+		<div className={`countdown ${className || ''}`}>
 			<Countdown date={date} renderer={renderer} />
 		</div>
 	);

@@ -6,7 +6,7 @@ import './Inputs.scss';
  * Displays a textarea
  */
 const Textarea = ({ label, placeholder, value, onChange, className }: TextareaProps) => (
-	<div className={`textarea ${className}`}>
+	<div className={`textarea ${className || ''}`}>
 		<label>
 			<div className="textarea-label">{label}</div>
 

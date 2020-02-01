@@ -29,7 +29,7 @@ const Input = ({
 	};
 
 	return (
-		<div className={`input ${className}`}>
+		<div className={`input ${className || ''}`}>
 			<label>
 				<div className="input-label">{label}</div>
 
