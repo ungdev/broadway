@@ -2,6 +2,6 @@ import React from 'react';
 
 import { Title } from '../components/UI';
 
-const Index = () => <Title>Accueil</Title>;
+const Play = () => <Title>La pièce</Title>;
 
-export default Index;
+export default Play;
