@@ -45,6 +45,8 @@ const Navbar = () => {
 		setMobileMenu(!mobileMenu);
 	};
 
+	const year = new Date().getFullYear();
+
 	return (
 		<div id="navbar" className={mobileMenu ? 'active' : ''}>
 			<button className="mobile-menu-button" onClick={toggleMobileMenu}>
@@ -55,12 +57,34 @@ const Navbar = () => {
 
 			<div className="navbar-content">
 				<Link href="/">
-					<a>
-						<img src="/static/images/logo.png" className="logo" />
+					<a className="logo">
+						<img src="/static/images/logo.png" />
 					</a>
 				</Link>
 
 				<nav>{navLinks}</nav>
+
+				<footer>
+					<div className="social-links">
+						<a href="https://www.facebook.com/broadwayUTT/" target="_blank" rel="noreferrer noopener">
+							<i className="fab fa-facebook-f" />
+						</a>
+						<a href="https://www.instagram.com/broadwayutt/" target="_blank" rel="noreferrer noopener">
+							<i className="fab fa-instagram" />
+						</a>
+						<Link href="/informations">
+							<a>
+								<i className="far fa-envelope" />
+							</a>
+						</Link>
+					</div>
+
+					<div className="copyright">Tous droits réservés &copy; {year} - Broadway&nbsp;UTT</div>
+
+					<Link href="/mentions-legales">
+						<a className="legal-link">Mentions légales</a>
+					</Link>
+				</footer>
 			</div>
 		</div>
 	);

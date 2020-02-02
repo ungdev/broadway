@@ -6,7 +6,8 @@
 	top: 0;
 	width: $navbar-width;
 	height: 100vh;
-	background: $gradient;
+	color: #fff;
+	background: $primary-color;
 	z-index: 1;
 
 	.mobile-menu-button {
@@ -14,19 +15,28 @@
 	}
 
 	.navbar-content {
-		max-height: 100vh;
+		background: $gradient;
+		height: 100vh;
 		overflow: auto;
+		display: flex;
+		flex-flow: column nowrap;
+		transition: all 0.3s;
 	}
 
 	.logo {
 		display: block;
 		margin: 30px auto;
-		width: $navbar-logo-width;
-		height: 140px; // For DEBUG purpose
-		background: $image-placeholder;
+
+		img {
+			width: $navbar-logo-width;
+			height: 140px; // For DEBUG purpose
+			background: $image-placeholder;
+		}
 	}
 
 	nav {
+		flex-grow: 1;
+
 		.nav-button {
 			position: relative;
 			display: block;
@@ -55,6 +65,44 @@
 			&:focus::before {
 				width: 100%;
 			}
+		}
+	}
+
+	footer {
+		border-top: 1px solid #fff;
+		margin-top: 20px;
+		text-align: center;
+		font-size: 0.9em;
+
+		.social-links {
+			display: flex;
+			justify-content: space-evenly;
+			margin: 10px 0;
+
+			& > a {
+				display: block;
+				width: 45px;
+				padding: 8px 0;
+				font-size: 24px;
+				color: #fff;
+				border-radius: 50%;
+				transition: all 0.3s;
+
+				&:hover,
+				&:focus {
+					background: #fff4;
+				}
+			}
+		}
+
+		.copyright {
+			padding: 0 10px;
+		}
+
+		.legal-link {
+			display: inline-block;
+			color: #fff;
+			margin: 10px 0;
 		}
 	}
 }
@@ -114,12 +162,6 @@
 					top: calc(50% - 2px);
 				}
 			}
-		}
-
-		.navbar-content {
-			height: 100vh;
-			background: $gradient;
-			transition: all 0.3s;
 		}
 
 		&:not(.active) {

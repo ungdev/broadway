@@ -1,5 +1,6 @@
 import React from 'react';
 import NextApp, { AppContext } from 'next/app';
+import Head from 'next/head';
 import ReactGA from 'react-ga';
 import withRedux from 'next-redux-wrapper';
 import { Store } from 'redux';
@@ -49,13 +50,21 @@ class App extends NextApp<AppProps> {
 		const { Component, pageProps, store } = this.props;
 		this.initialiseGA();
 		return (
-			<Provider store={store}>
-				<Navbar />
+			<>
+				<Head>
+					<title>Broadway UTT</title>
 
-				<div id="page-content">
-					<Component {...pageProps} />
-				</div>
-			</Provider>
+					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" />
+				</Head>
+
+				<Provider store={store}>
+					<Navbar />
+
+					<div id="page-content">
+						<Component {...pageProps} />
+					</div>
+				</Provider>
+			</>
 		);
 	}
 }
