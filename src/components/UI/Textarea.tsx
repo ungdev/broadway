@@ -5,25 +5,17 @@ import './Inputs.scss';
 /**
  * Displays a textarea
  */
-const Textarea = ({ label, placeholder, value, onChange, className }: TextareaProps) => (
-	<div className={`textarea ${className || ''}`}>
-		<label>
-			<div className="textarea-label">{label}</div>
+const Textarea = ({ placeholder, value, onChange, className }: TextareaProps) => (
+	<label className={`textarea ${className || ''}`}>
+		<textarea value={value} onChange={(e) => onChange(e.target.value)} />
 
-			<textarea value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
-
-			<div className="line" />
-		</label>
-	</div>
+		<div className="placeholder">{placeholder}</div>
+	</label>
 );
 
 interface TextareaProps {
 	/**
-	 * Label to display
-	 */
-	label: string;
-	/**
-	 * Text to show when field is blank
+	 * Placeholder to display
 	 */
 	placeholder: string;
 	/**
@@ -38,7 +30,7 @@ interface TextareaProps {
 	/**
 	 * Class of the container
 	 */
-	className: string;
+	className?: string;
 }
 
 export default Textarea;

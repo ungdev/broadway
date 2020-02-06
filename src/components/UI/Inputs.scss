@@ -1,71 +1,53 @@
-.input,
-.select,
-.textarea {
+@import '../../variables.scss';
+
+label.input,
+label.textarea {
 	display: block;
 	position: relative;
-	margin: 14px 0;
-	width: 100%;
-}
+	margin-top: 26px;
 
-.input .input-label,
-.select .select-label,
-.textarea .textarea-label {
-	display: block;
-	padding-bottom: 2px;
-	color: #858585;
-	user-select: none;
-}
+	textarea {
+		resize: vertical;
+		min-height: 90px;
+	}
 
-.input input,
-.select select,
-.textarea textarea {
-	width: calc(100% - 16px);
-	border: none;
-	border-radius: 0;
-	padding: 8px;
-	background: #fff;
-	font-size: 1em;
-	font-family: 'Roboto', sans-serif;
-}
+	input,
+	textarea {
+		width: calc(100% - 20px);
+		padding: 10px;
+		font-size: inherit;
+		font-family: inherit;
+		background: #f0f0f0;
+		border: none;
+		border-bottom: 2px solid #ccc;
+		border-radius: 0;
+		transition: all 0.3s;
 
-.select select {
-	width: 100%;
-}
+		& + .placeholder {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 10px;
+			color: #444;
+			cursor: text;
+			user-select: none;
+			transition: all 0.3s;
+		}
+	}
 
-.textarea textarea {
-	resize: vertical;
-	height: 100px;
-	min-height: 50px;
-}
+	input:focus,
+	textarea:focus {
+		border-bottom: 2px solid $primary-color;
+	}
 
-.input .line,
-.select .line,
-.textarea .line {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 1px;
-	background: #c8c8c8;
-}
-
-.input .line::after,
-.select .line::after,
-.textarea .line::after {
-	content: '';
-	display: block;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 2px;
-	background: var(--gradient);
-	opacity: 0;
-	transition: all 0.3s;
-}
-
-.input input:focus + .line::after,
-.select select:focus + .line::after,
-.textarea textarea:focus + .line::after {
-	opacity: 1;
+	input:focus,
+	textarea:focus,
+	input:not([value='']),
+	textarea:not(:empty) {
+		& + .placeholder {
+			top: -22px;
+			padding: 0 4px;
+			font-size: 0.8em;
+		}
+	}
 }
