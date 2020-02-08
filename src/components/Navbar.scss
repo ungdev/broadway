@@ -35,6 +35,7 @@
 	}
 
 	nav {
+		font-family: 'Montserrat', sans-serif;
 		flex-grow: 1;
 
 		.nav-button {
@@ -107,7 +108,7 @@
 	}
 }
 
-@media screen and (max-width: $breakpoint) {
+@media screen and (max-width: $navbar-breakpoint) {
 	#navbar {
 		height: $navbar-mobile-height;
 		width: 100%;

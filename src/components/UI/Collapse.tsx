@@ -5,8 +5,9 @@ import './Collapse.scss';
 /**
  * Display an extension panel
  */
-const Collapse = ({ title, children, className }: CollapseProps) => {
+const Collapse = ({ title, children, noTopMargin, className }: CollapseProps) => {
 	const contentRef = useRef<HTMLDivElement>(null);
+
 	const [contentHeight, setContentHeight] = useState(0);
 	const [contentVisible, setContentVisible] = useState(false);
 
@@ -26,7 +27,8 @@ const Collapse = ({ title, children, className }: CollapseProps) => {
 	}, [children]);
 
 	return (
-		<div className={`collapse ${className || ''} ${contentVisible ? 'active' : ''}`}>
+		<div
+			className={`collapse ${className || ''} ${contentVisible ? 'active' : ''} ${noTopMargin ? 'no-top-margin' : ''}`}>
 			<div className="collapse-title" onClick={() => setVisible(!contentVisible)}>
 				{title}
 
@@ -51,6 +53,10 @@ interface CollapseProps {
 	 * Content to display when the user clicks on the title
 	 */
 	children: ReactNode;
+	/**
+	 * Should the content have a top margin ?
+	 */
+	noTopMargin?: boolean;
 	/**
 	 * Class of the container
 	 */

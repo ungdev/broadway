@@ -17,7 +17,7 @@ const Button = ({
 	className,
 }: ButtonProps) => (
 	<button
-		type={type}
+		type={type || 'button'}
 		className={`button ${className || ''} ${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''} ${
 			!children ? 'empty' : ''
 		}`}

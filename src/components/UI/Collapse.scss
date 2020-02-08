@@ -6,13 +6,6 @@
 		0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 	margin-bottom: 16px;
 
-	.collapse-title {
-		cursor: pointer;
-		display: flex;
-		justify-content: space-between;
-		padding: 1em;
-	}
-
 	&::after {
 		content: '';
 		display: block;
@@ -21,6 +14,13 @@
 		width: 100%;
 		height: 3px;
 		background: $primary-color;
+	}
+
+	.collapse-title {
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		padding: 1em;
 	}
 
 	.collapse-content {
@@ -32,7 +32,6 @@
 		&::before {
 			content: '';
 			display: block;
-			width: 100%;
 			height: 1px;
 			margin-bottom: 1em;
 			background: #c8c8c8;
@@ -43,6 +42,10 @@
 			display: block;
 			height: 1em;
 		}
+	}
+
+	&.no-top-margin .collapse-content::before {
+		margin-bottom: 0;
 	}
 
 	.collapse-arrow {

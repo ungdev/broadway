@@ -58,7 +58,7 @@ const Navbar = () => {
 			<div className="navbar-content">
 				<Link href="/">
 					<a className="logo">
-						<img src="/static/images/logo.png" />
+						<img src="/static/images/logo.png" alt="Logo Broadway UTT" />
 					</a>
 				</Link>
 

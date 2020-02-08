@@ -1,9 +1,10 @@
+@import '../../variables.scss';
+
 .button {
 	display: inline-block;
-	border: 2px solid var(--light-color);
+	border: $button-border;
 	border-radius: 0;
 	padding: 8px 20px;
-	margin: 4px;
 	background: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 1em;
@@ -15,7 +16,7 @@
 		color: #fff;
 		border: none;
 		padding: 10px 22px;
-		background: var(--gradient);
+		background: $primary-color;
 	}
 
 	&:disabled {
