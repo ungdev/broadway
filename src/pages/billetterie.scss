@@ -1,0 +1,54 @@
+@import '../variables.scss';
+
+#tickets {
+	.info {
+		padding: 16px;
+		margin: 24px 0 16px 0;
+		text-align: justify;
+		background: $secondary-color;
+		border-radius: 4px;
+		border: 2px solid #5555;
+
+		.info-icon {
+			color: $primary-color;
+			float: left;
+			margin: 0 6px 0 0;
+		}
+	}
+
+	.new-ticket {
+		color: #555;
+		font-style: italic;
+	}
+
+	.ticket-name-inputs > * {
+		display: inline-block;
+		width: calc(50% - 5px);
+
+		&:first-child {
+			margin-right: 10px;
+		}
+	}
+
+	.ticket-type {
+		margin-top: 20px;
+	}
+
+	.delete-button {
+		float: right;
+		margin: 25px 0 15px 0;
+	}
+
+	.add-button {
+		display: block;
+		margin: 40px auto 0 auto;
+	}
+
+	@media screen and (max-width: $tickets-breakpoint) {
+		.ticket-name-inputs > * {
+			display: block;
+			width: 100%;
+			margin-right: 0;
+		}
+	}
+}
