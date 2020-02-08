@@ -21,7 +21,7 @@ deploy:
   - provider: openshift
     server: $OPENSHIFT_SERVER
     project: broadway
-    app: website-dev
+    app: front-dev
     token: $OPENSHIFT_TOKEN
     on:
       branch: dev
@@ -29,7 +29,7 @@ deploy:
   - provider: openshift
     server: $OPENSHIFT_SERVER
     project: broadway
-    app: website-prod
+    app: front-prod
     token: $OPENSHIFT_TOKEN
     on:
       branch: master
