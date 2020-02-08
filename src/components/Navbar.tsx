@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 
 import './Navbar.scss';
 
@@ -35,15 +35,22 @@ const Navbar = () => {
 	const [mobileMenu, setMobileMenu] = useState(false);
 	const currentPage = (useRouter().pathname.match(/(\/[a-z]*)/) || '')[0];
 
+	const toggleMobileMenu = () => {
+		setMobileMenu(!mobileMenu);
+	};
+
+	useEffect(() => {
+		// Add 'Route change' event
+		Router.events.on('routeChangeStart', () => {
+			setMobileMenu(false);
+		});
+	}, []);
+
 	const navLinks = links.map((link) => (
 		<Link href={link.href} key={link.href}>
 			<a className={`nav-button ${link.href === currentPage ? 'active' : ''}`}>{link.title}</a>
 		</Link>
 	));
-
-	const toggleMobileMenu = () => {
-		setMobileMenu(!mobileMenu);
-	};
 
 	const year = new Date().getFullYear();
 
@@ -58,7 +65,7 @@ const Navbar = () => {
 			<div className="navbar-content">
 				<Link href="/">
 					<a className="logo">
-						<img src="/static/images/logo.png" alt="Logo Broadway UTT" />
+						<img src="/images/logo.png" alt="Logo Broadway UTT" />
 					</a>
 				</Link>
 

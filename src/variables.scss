@@ -3,6 +3,7 @@
 /*************/
 
 $primary-color: #7b1101;
+$secondary-color: #f3dba7;
 $title-color: #ac460b;
 $image-placeholder: #fff6;
 $gradient: radial-gradient(#7b1101, #580c00);
@@ -16,3 +17,15 @@ $navbar-logo-width: 200px;
 $navbar-hover-background: #fff3;
 $navbar-mobile-height: 60px;
 $navbar-breakpoint: 900px;
+
+/************/
+/** Button **/
+/************/
+
+$button-border: 2px solid #0000003b;
+
+/*************/
+/** Tickets **/
+/*************/
+
+$tickets-breakpoint: 600px;

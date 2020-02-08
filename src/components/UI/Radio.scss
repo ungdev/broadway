@@ -1,13 +1,21 @@
+@import '../../variables.scss';
+
 .radio {
 	.radio-label {
 		padding-bottom: 2px;
-		color: #858585;
+		color: $primary-color;
 		user-select: none;
 	}
 
 	.radio-container {
 		display: flex;
 		flex-flow: column wrap;
+		align-items: flex-start;
+		margin-left: 8px;
+
+		label {
+			display: inline-block;
+		}
 	}
 
 	&.row {
@@ -44,7 +52,7 @@
 			}
 
 			+ .radio-value::before {
-				background: var(--gradient);
+				background: $gradient;
 			}
 		}
 

@@ -25,12 +25,10 @@
 
 	.logo {
 		display: block;
-		margin: 30px auto;
+		margin: 50px auto;
 
 		img {
 			width: $navbar-logo-width;
-			height: 140px; // For DEBUG purpose
-			background: $image-placeholder;
 		}
 	}
 
@@ -78,7 +76,7 @@
 		.social-links {
 			display: flex;
 			justify-content: space-evenly;
-			margin: 10px 0;
+			margin: 10px 0 6px 0;
 
 			& > a {
 				display: block;
@@ -103,7 +101,7 @@
 		.legal-link {
 			display: inline-block;
 			color: #fff;
-			margin: 10px 0;
+			margin: 6px 0 16px 0;
 		}
 	}
 }

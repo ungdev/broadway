@@ -49,7 +49,7 @@ interface RadioProps {
 	/**
 	 * Function triggered when the value change
 	 */
-	onChange: (value: string | number) => void;
+	onChange: (value: string) => void;
 	/**
 	 * Used to identify a group of radio inputs
 	 */

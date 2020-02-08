@@ -60,9 +60,9 @@ class App extends NextApp<AppProps> {
 				<Provider store={store}>
 					<Navbar />
 
-					<div id="page-content">
+					<main>
 						<Component {...pageProps} />
-					</div>
+					</main>
 				</Provider>
 			</>
 		);

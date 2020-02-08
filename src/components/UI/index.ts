@@ -1,5 +1,4 @@
 import Button from './Button';
-import Card from './Card';
 import Collapse from './Collapse';
 import Countdown from './Countdown';
 import Helper from './Helper';
@@ -15,7 +14,6 @@ import VideoContainer from './VideoContainer';
 
 export {
 	Button,
-	Card,
 	Collapse,
 	Countdown,
 	Helper,
