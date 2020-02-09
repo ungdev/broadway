@@ -167,7 +167,12 @@
 			.navbar-content {
 				height: 0;
 				overflow: hidden;
+				transition: all 0.1s;
 			}
+		}
+
+		.logo {
+			margin: 30px auto;
 		}
 	}
 }

@@ -13,10 +13,10 @@ main {
 	position: absolute;
 	top: 0;
 	left: $navbar-width;
-	min-height: 100vh;
+	min-height: calc(100vh - 50px);
 	width: calc(100% - #{$navbar-width});
-	background: #efefef;
 	padding-bottom: 50px;
+	background: #efefef;
 
 	@media screen and (max-width: $navbar-breakpoint) {
 		top: $navbar-mobile-height;

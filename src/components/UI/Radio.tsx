@@ -22,6 +22,8 @@ const Radio = ({ label, options, name, value, onChange, row, className }: RadioP
 					</div>
 
 					{option.name}
+
+					{option.description && <div className="radio-description">{option.description}</div>}
 				</label>
 			))}
 		</div>
@@ -31,6 +33,7 @@ const Radio = ({ label, options, name, value, onChange, row, className }: RadioP
 interface Option {
 	name: string;
 	value: string;
+	description?: string;
 }
 
 interface RadioProps {

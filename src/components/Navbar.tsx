@@ -32,8 +32,18 @@ const links = [
 ];
 
 const Navbar = () => {
-	const [mobileMenu, setMobileMenu] = useState(false);
+	const [mobileMenu, _setMobileMenu] = useState(false);
 	const currentPage = (useRouter().pathname.match(/(\/[a-z]*)/) || '')[0];
+
+	const setMobileMenu = (value: boolean) => {
+		if (value) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+
+		_setMobileMenu(value);
+	};
 
 	const toggleMobileMenu = () => {
 		setMobileMenu(!mobileMenu);
