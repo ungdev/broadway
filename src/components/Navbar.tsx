@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 import './Navbar.scss';
 
@@ -32,8 +32,10 @@ const links = [
 ];
 
 const Navbar = () => {
+	const router = useRouter();
+
 	const [mobileMenu, _setMobileMenu] = useState(false);
-	const currentPage = (useRouter().pathname.match(/(\/[a-z]*)/) || '')[0];
+	const currentPage = (router.pathname.match(/(\/[a-z]*)/) || '')[0];
 
 	const setMobileMenu = (value: boolean) => {
 		if (value) {
@@ -51,10 +53,10 @@ const Navbar = () => {
 
 	useEffect(() => {
 		// Add 'Route change' event
-		Router.events.on('routeChangeStart', () => {
+		router.events.on('routeChangeStart', () => {
 			setMobileMenu(false);
 		});
-	}, []);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const navLinks = links.map((link) => (
 		<Link href={link.href} key={link.href}>

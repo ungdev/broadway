@@ -35,7 +35,6 @@ const typeToString = (typeValue: string) => {
 };
 
 const Tickets = () => {
-	const [step, setStep] = useState(0);
 	const [date, setDate] = useState('');
 	const [tickets, setTickets] = useState([defaultTicketValue]);
 
@@ -115,7 +114,6 @@ const Tickets = () => {
 			<form
 				noValidate
 				onSubmit={(e) => {
-					console.log('pay');
 					e.preventDefault();
 				}}
 				className="content-container">
