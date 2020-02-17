@@ -12,6 +12,7 @@
 		"@zeit/next-css": "^1.0.1",
 		"@zeit/next-sass": "^1.0.1",
 		"@zeit/next-typescript": "^1.1.1",
+		"axios": "^0.19.2",
 		"dotenv": "^8.2.0",
 		"lazysizes": "^5.2.0",
 		"next": "^9.2.0",

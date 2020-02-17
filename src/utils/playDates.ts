@@ -1,10 +1,10 @@
 export default [
 	{
 		name: 'Vendredi 5 Juin',
-		value: 'friday',
+		value: 0,
 	},
 	{
 		name: 'Samedi 6 Juin',
-		value: 'saturday',
+		value: 1,
 	},
 ];
