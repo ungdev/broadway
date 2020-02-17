@@ -13,13 +13,11 @@ const Radio = ({ label, options, name, value, onChange, row, className }: RadioP
 						type="radio"
 						name={name}
 						value={option.value}
-						checked={value === option.value}
+						checked={value === `${option.value}`}
 						onChange={(e) => onChange(e.target.value)}
 					/>
 
-					<div className="radio-value">
-						<i className="far fa-circle" />
-					</div>
+					<div className="radio-value" />
 
 					{option.name}
 
@@ -32,7 +30,7 @@ const Radio = ({ label, options, name, value, onChange, row, className }: RadioP
 
 interface Option {
 	name: string;
-	value: string;
+	value: string | number;
 	description?: string;
 }
 
