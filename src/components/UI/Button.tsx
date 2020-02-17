@@ -12,6 +12,7 @@ const Button = ({
 	type,
 	leftIcon,
 	rightIcon,
+	spinner,
 	disabled,
 	noStyle,
 	className,
@@ -20,7 +21,7 @@ const Button = ({
 		type={type || 'button'}
 		className={`button ${className || ''} ${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''} ${
 			!children ? 'empty' : ''
-		}`}
+		} ${spinner ? 'spinner' : ''}`}
 		onClick={onClick}
 		disabled={disabled}>
 		{leftIcon && <i className={`button-icon-left ${leftIcon}`} />}
@@ -59,6 +60,11 @@ interface ButtonProps {
 	 * Right icon class name
 	 */
 	rightIcon?: string;
+
+	/**
+	 * Should the spinner be displayed ?
+	 */
+	spinner?: boolean;
 
 	/**
 	 * Is the button disabled ?

@@ -2,12 +2,13 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { State } from '../types';
-import isEmail from '../utils/isEmail';
+import { isValidTicket, proceedPayment } from '../utils/tickets';
 import playDates from '../utils/playDates';
 import { fetchItems } from '../reducers/items';
 import { Title, Input, Collapse, Button, Radio } from '../components/UI';
 
 import './billetterie.scss';
+import { toast } from 'react-toastify';
 
 const defaultTicketValue = {
 	firstname: '',
@@ -19,7 +20,8 @@ const defaultTicketValue = {
 const Tickets = () => {
 	const dispatch = useDispatch();
 	const items = useSelector((state: State) => state.items);
-	const [date, setDate] = useState('');
+	const [buttonLoading, setButtonLoading] = useState(false);
+	const [date, setDate] = useState(null as string | null);
 	const [tickets, setTickets] = useState([defaultTicketValue]);
 
 	const addTicket = () => {
@@ -41,17 +43,49 @@ const Tickets = () => {
 		setTickets(updatedTickets);
 	};
 
-	const getItemName = (itemId: string) => {
-		return items.find((v) => `${v.id}` === itemId)?.name;
+	const getTicketName = (ticketId: string) => {
+		return items.find((v) => `${v.id}` === ticketId)?.name;
 	};
 
 	useEffect(() => {
 		dispatch(fetchItems());
 	}, [dispatch]);
 
-	const payCart = () => {
-		console.log(date);
-		console.log(tickets);
+	const checkInputs = () => {
+		let valid = true;
+
+		// Check date
+		if (!date) {
+			return false;
+		}
+
+		// Check tickets
+		tickets.forEach((ticket, i) => {
+			if (!isValidTicket(ticket, i)) {
+				valid = false;
+			}
+		});
+
+		return valid;
+	};
+
+	const payCart = async () => {
+		if (buttonLoading) {
+			return;
+		}
+
+		// Check inputs
+		if (!checkInputs()) {
+			// Display errors
+			toast.error('Veuillez remplir tous les champs correctement');
+			return;
+		}
+
+		// Proceed with the payment
+		setButtonLoading(true);
+		if (!(await proceedPayment(date || '', tickets))) {
+			setButtonLoading(false);
+		}
 	};
 
 	let ticketsNode = null as Array<ReactNode> | null;
@@ -65,12 +99,17 @@ const Tickets = () => {
 
 		ticketsNode = tickets.map((ticket, i) => {
 			let title = null;
-			if (ticket.firstname && ticket.lastname && ticket.type && (i === 0 ? isEmail(ticket.email) : true)) {
-				title = `${ticket.firstname} ${ticket.lastname} (${getItemName(ticket.type)})`;
+			if (isValidTicket(ticket, i)) {
+				title = (
+					<>
+						{ticket.firstname} {ticket.lastname}{' '}
+						<span className="ticket-title-info">({getTicketName(ticket.type)})</span>
+					</>
+				);
 			}
 
 			return (
-				<Collapse title={title || <span className="new-ticket">Nouveau billet</span>} noTopMargin key={i}>
+				<Collapse title={title || <span className="ticket-title-info">Nouveau billet</span>} noTopMargin key={i}>
 					<div className="ticket-name-inputs">
 						<Input
 							type="text"
@@ -149,7 +188,7 @@ const Tickets = () => {
 							Ajouter un billet
 						</Button>
 
-						<Button type="submit" primary leftIcon="fas fa-credit-card" className="pay-button">
+						<Button type="submit" primary leftIcon="fas fa-credit-card" className="pay-button" spinner={buttonLoading}>
 							Payer
 						</Button>
 					</>

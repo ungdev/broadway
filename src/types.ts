@@ -26,3 +26,10 @@ export interface Item {
 	description: string;
 	price: number;
 }
+
+export interface Ticket {
+	firstname: string;
+	lastname: string;
+	email: string;
+	type: string;
+}

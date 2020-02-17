@@ -13,7 +13,7 @@ const Radio = ({ label, options, name, value, onChange, row, className }: RadioP
 						type="radio"
 						name={name}
 						value={option.value}
-						checked={value === `${option.value}`}
+						checked={value == option.value}
 						onChange={(e) => onChange(e.target.value)}
 					/>
 
@@ -46,7 +46,7 @@ interface RadioProps {
 	/**
 	 * Value of the field
 	 */
-	value: string;
+	value: string | null;
 	/**
 	 * Function triggered when the value change
 	 */

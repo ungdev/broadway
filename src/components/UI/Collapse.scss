@@ -18,8 +18,7 @@
 
 	.collapse-title {
 		cursor: pointer;
-		display: flex;
-		justify-content: space-between;
+		position: relative;
 		padding: 1em;
 	}
 
@@ -49,14 +48,17 @@
 	}
 
 	.collapse-arrow {
+		position: absolute;
+		top: 50%;
+		right: 1em;
 		margin-left: 0.5em;
 		display: flex;
 		height: min-content;
-		transform: rotate(0deg);
+		transform: translateY(-50%) rotate(0deg);
 		transition: all 0.3s;
 	}
 
 	&.active .collapse-arrow {
-		transform: rotate(180deg);
+		transform: translateY(-50%) rotate(180deg);
 	}
 }

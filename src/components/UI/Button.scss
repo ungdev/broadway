@@ -1,6 +1,7 @@
 @import '../../variables.scss';
 
 .button {
+	position: relative;
 	display: inline-block;
 	border: $button-border;
 	border-radius: 0;
@@ -19,8 +20,13 @@
 		background: $primary-color;
 	}
 
-	&:disabled {
-		filter: grayscale(0.5) brightness(0.8);
+	&:not(.primary):disabled {
+		background: #eee;
+		cursor: default;
+	}
+
+	&.primary:disabled {
+		filter: grayscale(0.4) brightness(0.9);
 		cursor: default;
 	}
 
@@ -43,6 +49,23 @@
 
 		.button-icon-right {
 			margin-left: 8px;
+		}
+	}
+
+	&.spinner {
+		color: transparent;
+
+		&::before {
+			content: '\f110';
+			position: absolute;
+			display: inline-block;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 900;
+			font-size: 1.2em;
+			color: #fff;
+			animation: $spin-animation;
 		}
 	}
 }
