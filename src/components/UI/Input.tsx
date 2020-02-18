@@ -17,7 +17,7 @@ interface InputProps {
 	/**
 	 * Input type
 	 */
-	type: 'text' | 'email';
+	type: 'text' | 'email' | 'password';
 	/**
 	 * Placeholder to display
 	 */

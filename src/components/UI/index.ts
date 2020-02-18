@@ -2,6 +2,7 @@ import Button from './Button';
 import Collapse from './Collapse';
 import Countdown from './Countdown';
 import Helper from './Helper';
+import Info from './Info';
 import Input from './Input';
 import Modal from './Modal';
 import Radio from './Radio';
@@ -17,6 +18,7 @@ export {
 	Collapse,
 	Countdown,
 	Helper,
+	Info,
 	Input,
 	Modal,
 	Radio,

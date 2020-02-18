@@ -5,7 +5,7 @@ import { State } from '../types';
 import { isValidTicket, proceedPayment } from '../utils/tickets';
 import playDates from '../utils/playDates';
 import { fetchItems } from '../reducers/items';
-import { Title, Input, Collapse, Button, Radio } from '../components/UI';
+import { Title, Input, Collapse, Button, Radio, Info } from '../components/UI';
 
 import './billetterie.scss';
 import { toast } from 'react-toastify';
@@ -164,17 +164,13 @@ const Tickets = () => {
 					e.preventDefault();
 				}}
 				className="content-container">
-				<div className="info">
-					<div className="info-title">
-						<i className="fas fa-info-circle info-icon" /> Informations
-					</div>
-
+				<Info title="Informations">
 					<ul>
 						<li>Les informations du premier billet seront utilisées comme coordonnées de facturation.</li>
 						<li>L'adresse email vous permettra de recevoir vos billets et de les renvoyer en cas de perte.</li>
 						<li>Pour les tarifs réduit et cotisant, un justificatif vous sera demandé.</li>
 					</ul>
-				</div>
+				</Info>
 
 				{ticketsNode ? (
 					<>
