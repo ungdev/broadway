@@ -23,7 +23,7 @@ main {
 		top: $navbar-mobile-height;
 		left: 0;
 		width: 100%;
-		min-height: calc(100vh - #{$navbar-mobile-height});
+		min-height: calc(100vh - 50px - #{$navbar-mobile-height});
 	}
 }
 

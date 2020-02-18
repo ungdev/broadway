@@ -7,7 +7,7 @@ const Admin = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		// Check if logged in
+		// Redirect to login page if not logged in
 		if (!localStorage.getItem('broadway-token')) {
 			router.replace('/login?next=admin');
 		}

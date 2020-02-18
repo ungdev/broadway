@@ -1,16 +1,19 @@
 import axios, { Method, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 
-const api = async (method: Method, url: string, data?: object) =>
+export default async (method: Method, url: string, data?: object) =>
 	new Promise<AxiosResponse>((resolve, reject) => {
 		axios
 			.request({
 				baseURL: process.env.API_URL,
-				headers: { 'Content-Type': 'application/json' },
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${localStorage.getItem('broadway-token')}`,
+				},
+				timeout: 5000,
 				method,
 				url,
 				data: data || {},
-				timeout: 5000,
 			})
 			.then((res) => resolve(res))
 			.catch((err) => {
@@ -18,5 +21,3 @@ const api = async (method: Method, url: string, data?: object) =>
 				reject();
 			});
 	});
-
-export default api;

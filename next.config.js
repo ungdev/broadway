@@ -18,12 +18,10 @@ if (env) {
 // Next config
 const nextJSConfig = {
 	env,
-	webpack: (c) => {
-		const config = c;
-		config.plugins = config.plugins || [];
-
-		return config;
-	},
+	webpack: (config) => ({
+		...config,
+		plugins: config.plugins || [],
+	}),
 };
 
 // eslint-disable-next-line no-console
