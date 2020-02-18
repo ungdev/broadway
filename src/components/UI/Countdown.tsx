@@ -1,5 +1,5 @@
 import React from 'react';
-import Countdown from 'react-countdown-now';
+import Countdown from 'react-countdown';
 
 import './Countdown.scss';
 

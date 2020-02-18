@@ -11,7 +11,9 @@ const env = require('dotenv').config({
 	path: path.resolve(__dirname, '.env'),
 }).parsed;
 
-delete env.NODE_ENV;
+if (env) {
+	delete env.NODE_ENV;
+}
 
 // Next config
 const nextJSConfig = {
