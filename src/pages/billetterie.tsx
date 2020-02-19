@@ -1,14 +1,14 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { State } from '../types';
 import { isValidTicket, proceedPayment } from '../utils/tickets';
-import playDates from '../utils/playDates';
-import { fetchItems } from '../reducers/items';
+import { representations } from '../utils/representations';
+import { fetchItems } from '../utils/items';
 import { Title, Input, Collapse, Button, Radio, Info } from '../components/UI';
 
 import './billetterie.scss';
-import { toast } from 'react-toastify';
 
 const defaultTicketValue = {
 	firstname: '',
@@ -154,7 +154,7 @@ const Tickets = () => {
 	}
 
 	return (
-		<div id="tickets">
+		<div id="tickets" className="page-margin">
 			<Title>Billetterie</Title>
 
 			<form
@@ -175,7 +175,13 @@ const Tickets = () => {
 				{ticketsNode ? (
 					<>
 						<div className="card">
-							<Radio label="Date de représentation" options={playDates} name="date" value={date} onChange={setDate} />
+							<Radio
+								label="Date de représentation"
+								options={representations}
+								name="date"
+								value={date}
+								onChange={setDate}
+							/>
 						</div>
 
 						{ticketsNode}

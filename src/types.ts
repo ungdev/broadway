@@ -9,6 +9,7 @@ declare global {
 // Redux
 export interface State {
 	items: Array<Item>;
+	login: { token: string; permissions: string };
 }
 
 export interface Action {
@@ -32,4 +33,22 @@ export interface Ticket {
 	lastname: string;
 	email: string;
 	type: string;
+}
+
+export interface User {
+	id: string;
+	firstname: string;
+	lastname: string;
+	isScanned: boolean;
+	itemId: number;
+}
+
+export interface FetchedOrder {
+	id: string;
+	representation: number;
+	firstname: string;
+	lastname: string;
+	email: string;
+	users: Array<User>;
+	paidAt: string;
 }

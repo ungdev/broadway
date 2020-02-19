@@ -40,7 +40,7 @@ const Login = () => {
 	};
 
 	return (
-		<div id="login">
+		<div id="login" className="page-margin">
 			<Title>Connexion</Title>
 
 			<div className="content-container">
