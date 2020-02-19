@@ -37,10 +37,19 @@
 		height: 100vh;
 
 		.validation-info {
+			position: relative;
 			background: $secondary-color;
-			padding: 14px;
+			padding: 14px 34px 14px 14px;
 			box-shadow: 0 0 6px #000;
 			z-index: 1;
+
+			.validation-close-button {
+				position: absolute;
+				top: 0;
+				right: 0;
+				font-size: 1.3em;
+				padding: 8px 10px;
+			}
 		}
 
 		.validation-users {
@@ -55,10 +64,6 @@
 
 				&.scanned {
 					background: #cbcbcb;
-
-					.validation-user-name {
-						text-decoration: line-through;
-					}
 				}
 
 				&.checked {

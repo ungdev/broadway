@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 
 import { FetchedOrder, State } from '../types';
 import { fetchOrder } from '../utils/orders';
 import { formatDate } from '../utils/date';
 import { fetchItems, getItemName } from '../utils/items';
+import { scanUsers } from '../utils/users';
 import { getRepresentation } from '../utils/representations';
 import { Button } from '../components/UI';
 
 import './orga.scss';
+import { toast } from 'react-toastify';
 
 const Orga = () => {
 	const dispatch = useDispatch();
@@ -65,10 +66,17 @@ const Orga = () => {
 		}
 	};
 
-	const scanEntries = () => {
-		toast.success('Les places ont bien été validées');
+	const closeValidation = () => {
 		setOrder(null);
 		setCheckedUsers([]);
+	};
+
+	const scanCheckedUsers = async () => {
+		await scanUsers(checkedUsers);
+
+		toast.success(`Les places ont bien été scannées`);
+
+		closeValidation();
 	};
 
 	return (
@@ -87,7 +95,8 @@ const Orga = () => {
 						<strong>Représentation :</strong> {getRepresentation(order.representation)}
 						<br />
 						<strong>Paiement :</strong> le {formatDate(order.paidAt)} par {order.firstname} {order.lastname} (
-						{order.email})<br />
+						{order.email})
+						<Button noStyle onClick={closeValidation} leftIcon="fas fa-times" className="validation-close-button" />
 					</div>
 
 					<div className="validation-users">
@@ -120,7 +129,12 @@ const Orga = () => {
 						})}
 					</div>
 
-					<Button primary leftIcon="fas fa-check" className="validation-button" onClick={scanEntries}>
+					<Button
+						primary
+						leftIcon="fas fa-check"
+						className="validation-button"
+						onClick={scanCheckedUsers}
+						disabled={!checkedUsers.length}>
 						Valider les entrées
 					</Button>
 				</div>
