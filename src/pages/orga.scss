@@ -46,6 +46,8 @@
 		.validation-users {
 			flex-grow: 1;
 			user-select: none;
+			background: #efefef;
+			z-index: 0;
 
 			.validation-user {
 				padding: 18px 10px;

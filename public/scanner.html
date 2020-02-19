@@ -24,6 +24,7 @@
 				video: document.getElementById('preview'),
 				mirror: false,
 				backgroundScan: false,
+				refractoryPeriod: 3000,
 			});
 
 			scanner.addListener('scan', function(content) {
