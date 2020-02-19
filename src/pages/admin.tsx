@@ -7,6 +7,7 @@ import { Title, Button } from '../components/UI';
 import { State } from '../types';
 import AdminTickets from '../components/admin/tickets';
 import AdminEmails from '../components/admin/email';
+import AdminStats from '../components/admin/stats';
 
 import './admin.scss';
 
@@ -16,7 +17,7 @@ const Admin = () => {
 	const [tab, setTab] = useState('');
 
 	useEffect(() => {
-		checkPermission('admin', login, router);
+		checkPermission('admin', login, router, '/admin');
 	}, [router, login]);
 
 	return (
@@ -51,22 +52,7 @@ const Admin = () => {
 				<div className="admin-content">
 					{tab === 'tickets' && <AdminTickets />}
 					{tab === 'emails' && <AdminEmails />}
-					{tab === 'stats' && (
-						<div className="stats">
-							<p>
-								<a href="https://analytics.google.com" target="_blank" rel="noopener noreferrer">
-									<i className="fas fa-angle-right" /> Google Analytics
-								</a>
-								<div className="light-text">Statistiques de visite du site (temps réel, audience, ...)</div>
-							</p>
-							<p>
-								<a href="https://grafana.uttnetgroup.fr" target="_blank" rel="noopener noreferrer">
-									<i className="fas fa-angle-right" /> Grafana
-								</a>
-								<div className="light-text">Statistiques de vente de la billetterie</div>
-							</p>
-						</div>
-					)}
+					{tab === 'stats' && <AdminStats />}
 				</div>
 			</div>
 		</div>

@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { Title, Input, Button, Info } from '../components/UI';
 import { login } from '../utils/login';
+import { State } from '../types';
 
 import './login.scss';
 
 const Login = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
+	const isLoggedIn = useSelector((state: State) => state.login !== false);
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
 	const next = router.query.next as string;
 
 	const tryRedirect = () => {
-		if (localStorage.getItem('broadway-token')) {
-			let redirect = localStorage.getItem('broadway-permissions');
-
+		if (isLoggedIn) {
 			if (next) {
-				redirect = next;
+				router.replace(next);
+			} else {
+				router.replace('/');
 			}
-
-			router.replace(`/${redirect}`);
 		}
 	};
 

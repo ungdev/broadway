@@ -12,9 +12,9 @@ import { checkPermission } from '../utils/permission';
 import { getRepresentation } from '../utils/representations';
 import { Button } from '../components/UI';
 
-import './orga.scss';
+import './scan.scss';
 
-const Orga = () => {
+const Scan = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const [order, setOrder] = useState(null as FetchedOrder | null);
@@ -27,7 +27,7 @@ const Orga = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		checkPermission('orga', login, router);
+		checkPermission('orga', login, router, '/scan');
 	}, [router, login]);
 
 	useEffect(() => {
@@ -79,7 +79,7 @@ const Orga = () => {
 	};
 
 	return (
-		<div id="orga">
+		<div id="scan">
 			<div className="scanner">
 				<div className="scanner-placeholder">
 					<i className="fas fa-video scanner-placeholder-icon" />
@@ -142,4 +142,4 @@ const Orga = () => {
 	);
 };
 
-export default Orga;
+export default Scan;

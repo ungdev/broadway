@@ -22,9 +22,8 @@ const LostTicket = () => {
 			<Title>Billet perdu</Title>
 
 			<div className="content-container">
-				<Info title="Billet perdu ?">
-					Vous avez perdu votre billet ? Vous pouvez le récupérer en indiquant l'adresse email utilisée lors de l'achat
-					de votre billet
+				<Info title="Vous avez perdu votre billet ?">
+					Vous pouvez récupérer votre billet en indiquant l'adresse email utilisée lors de l'achat
 				</Info>
 
 				<form

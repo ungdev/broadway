@@ -94,10 +94,10 @@ const Navbar = () => {
 
 				{login && (
 					<div className="logged-in">
-						<Link href="/orga">
+						<Link href="/scan">
 							<a>
 								<Button primary leftIcon="fas fa-qrcode">
-									Orga
+									Scan
 								</Button>
 							</a>
 						</Link>
