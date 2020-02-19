@@ -6,20 +6,7 @@ declare global {
 	}
 }
 
-// Redux
-export interface State {
-	items: Array<Item>;
-	login: { token: string; permissions: string };
-}
-
-export interface Action {
-	type: string;
-	payload?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-}
-
-export type Reducer = (state: State, action: Action) => State;
-export type Dispatch = ThunkDispatch<State, void, Action>;
-export type GetState = () => State;
+export type Login = { token: string; permissions: string } | false;
 
 export interface Item {
 	id: number;
@@ -52,3 +39,18 @@ export interface FetchedOrder {
 	users: Array<User>;
 	paidAt: string;
 }
+
+// Redux
+export interface State {
+	items: Array<Item>;
+	login: Login;
+}
+
+export interface Action {
+	type: string;
+	payload?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+}
+
+export type Reducer = (state: State, action: Action) => State;
+export type Dispatch = ThunkDispatch<State, void, Action>;
+export type GetState = () => State;

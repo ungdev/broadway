@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { Title, Input, Button, Info } from '../components/UI';
@@ -7,6 +8,7 @@ import { login } from '../utils/login';
 import './login.scss';
 
 const Login = () => {
+	const dispatch = useDispatch();
 	const router = useRouter();
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -32,7 +34,7 @@ const Login = () => {
 	const tryLogin = async () => {
 		setLoading(true);
 
-		if (await login(password)) {
+		if (await dispatch(login(password))) {
 			tryRedirect();
 		} else {
 			setLoading(false);

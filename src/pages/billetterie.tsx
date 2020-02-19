@@ -102,14 +102,13 @@ const Tickets = () => {
 			if (isValidTicket(ticket, i)) {
 				title = (
 					<>
-						{ticket.firstname} {ticket.lastname}{' '}
-						<span className="ticket-title-info">({getTicketName(ticket.type)})</span>
+						{ticket.firstname} {ticket.lastname} <span className="light-text">({getTicketName(ticket.type)})</span>
 					</>
 				);
 			}
 
 			return (
-				<Collapse title={title || <span className="ticket-title-info">Nouveau billet</span>} noTopMargin key={i}>
+				<Collapse title={title || <span className="light-text">Nouveau billet</span>} noTopMargin key={i}>
 					<div className="ticket-name-inputs">
 						<Input
 							type="text"

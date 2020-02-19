@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+import { logout, autoLogin } from '../utils/login';
+import { State } from '../types';
+import { Button } from './UI';
 
 import './Navbar.scss';
 
@@ -32,10 +37,16 @@ const links = [
 ];
 
 const Navbar = () => {
+	const dispatch = useDispatch();
 	const router = useRouter();
-
+	const login = useSelector((state: State) => state.login);
 	const [mobileMenu, _setMobileMenu] = useState(false);
 	const currentPage = (router.pathname.match(/(\/[a-z]*)/) || '')[0];
+
+	// Auto login
+	useEffect(() => {
+		dispatch(autoLogin());
+	}, [dispatch]);
 
 	const setMobileMenu = (value: boolean) => {
 		if (value) {
@@ -80,6 +91,12 @@ const Navbar = () => {
 						<img src="/images/logo.png" alt="Logo Broadway UTT" />
 					</a>
 				</Link>
+
+				{login && (
+					<Button onClick={() => dispatch(logout(router))} leftIcon="fas fa-sign-out-alt" className="logout-button">
+						Déconnexion
+					</Button>
+				)}
 
 				<nav>{navLinks}</nav>
 

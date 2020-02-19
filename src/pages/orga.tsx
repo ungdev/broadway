@@ -17,17 +17,17 @@ const Orga = () => {
 	const [order, setOrder] = useState(null as FetchedOrder | null);
 	const [checkedUsers, setCheckedUsers] = useState([] as Array<string>);
 	const items = useSelector((state: State) => state.items);
+	const isLoggedIn = useSelector((state: State) => state.login !== false);
 
 	useEffect(() => {
 		dispatch(fetchItems());
 	}, [dispatch]);
 
 	useEffect(() => {
-		// Redirect to login page if not logged in
-		if (!localStorage.getItem('broadway-token')) {
+		if (!isLoggedIn) {
 			router.replace('/login?next=orga');
 		}
-	}, [router]);
+	}, [router, isLoggedIn]);
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
