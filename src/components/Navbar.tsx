@@ -93,9 +93,29 @@ const Navbar = () => {
 				</Link>
 
 				{login && (
-					<Button onClick={() => dispatch(logout(router))} leftIcon="fas fa-sign-out-alt" className="logout-button">
-						Déconnexion
-					</Button>
+					<div className="logged-in">
+						<Link href="/orga">
+							<a>
+								<Button primary leftIcon="fas fa-qrcode">
+									Orga
+								</Button>
+							</a>
+						</Link>
+
+						{login.permissions === 'admin' && (
+							<Link href="/admin">
+								<a>
+									<Button primary leftIcon="fas fa-cog" className="admin-button">
+										Admin
+									</Button>
+								</a>
+							</Link>
+						)}
+
+						<Button onClick={() => dispatch(logout(router))} className="logout-button" noStyle>
+							Déconnexion
+						</Button>
+					</div>
 				)}
 
 				<nav>{navLinks}</nav>

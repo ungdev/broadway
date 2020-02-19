@@ -32,9 +32,22 @@
 		}
 	}
 
-	.logout-button {
-		width: 200px;
-		margin: 0 auto 28px auto;
+	.logged-in {
+		background: $secondary-color;
+		text-align: center;
+		padding: 20px 0;
+		margin-bottom: 14px;
+		box-shadow: 0 0 16px #333;
+
+		.admin-button {
+			margin-left: 10px;
+		}
+
+		.logout-button {
+			display: block;
+			margin: 14px auto 0 auto;
+			border-bottom: 1px solid #000;
+		}
 	}
 
 	nav {
