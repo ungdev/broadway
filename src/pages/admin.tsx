@@ -30,7 +30,7 @@ const Admin = () => {
 						leftIcon="fas fa-ticket-alt"
 						onClick={() => setTab('tickets')}
 						className={tab === 'tickets' ? 'active' : ''}>
-						Édition de billets
+						Création de billets
 					</Button>
 					<Button
 						primary

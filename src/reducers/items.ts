@@ -2,7 +2,10 @@ import { Action, Item } from '../types';
 
 export const SET_ITEMS = 'items/SET_ITEMS';
 
-const initialState = [] as Array<Item>;
+const initialState = {
+	items: [],
+	paymentEnabled: true,
+} as { items: Array<Item>; paymentEnabled: boolean };
 
 export default (state = initialState, action: Action) => {
 	switch (action.type) {

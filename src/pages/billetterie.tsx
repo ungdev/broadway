@@ -20,7 +20,7 @@ const defaultTicketValue = {
 
 const Tickets = () => {
 	const dispatch = useDispatch();
-	const items = useSelector((state: State) => state.items);
+	const { items, paymentEnabled } = useSelector((state: State) => state.items);
 	const [buttonLoading, setButtonLoading] = useState(false);
 	const [date, setDate] = useState(null as string | null);
 	const [tickets, setTickets] = useState([defaultTicketValue]);
@@ -180,7 +180,11 @@ const Tickets = () => {
 					</ul>
 				</Info>
 
-				{ticketsNode ? (
+				{!paymentEnabled ? (
+					<div className="payment-disabled">
+						<i className="fas fa-clock" /> L'achat de billets est désactivé pour le moment.
+					</div>
+				) : ticketsNode ? (
 					<>
 						<div className="card">
 							<Radio

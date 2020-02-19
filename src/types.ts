@@ -42,7 +42,10 @@ export interface FetchedOrder {
 
 // Redux
 export interface State {
-	items: Array<Item>;
+	items: {
+		items: Array<Item>;
+		paymentEnabled: boolean;
+	};
 	login: Login;
 }
 

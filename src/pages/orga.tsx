@@ -19,7 +19,7 @@ const Orga = () => {
 	const router = useRouter();
 	const [order, setOrder] = useState(null as FetchedOrder | null);
 	const [checkedUsers, setCheckedUsers] = useState([] as Array<string>);
-	const items = useSelector((state: State) => state.items);
+	const { items } = useSelector((state: State) => state.items);
 	const login = useSelector((state: State) => state.login);
 
 	useEffect(() => {

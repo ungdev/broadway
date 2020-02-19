@@ -14,6 +14,19 @@
 		}
 	}
 
+	.payment-disabled {
+		text-align: center;
+		border: 2px solid $primary-color;
+		border-radius: 4px;
+		padding: 16px;
+		color: $primary-color;
+		font-size: 1.1em;
+
+		i {
+			margin-right: 4px;
+		}
+	}
+
 	.ticket-name-inputs > * {
 		display: inline-block;
 		width: calc(50% - 5px);
