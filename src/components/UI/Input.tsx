@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import './Inputs.scss';
 
 /**
  * Displays an input
  */
-const Input = ({ type, placeholder, value, onChange, autocomplete, className }: InputProps) => (
-	<label className={`input ${className || ''}`}>
-		<input type={type} value={value} onChange={(e) => onChange(e.target.value)} autoComplete={autocomplete} />
+const Input = ({ type, placeholder, value, onChange, autocomplete, autoFocus, className }: InputProps) => {
+	const inputRef = useRef(null as HTMLInputElement | null);
 
-		<div className="placeholder">{placeholder}</div>
-	</label>
-);
+	useEffect(() => {
+		if (autoFocus) {
+			inputRef.current?.focus();
+		}
+	}, [autoFocus]);
+
+	return (
+		<label className={`input ${className || ''}`}>
+			<input
+				type={type}
+				value={value}
+				onChange={(e) => onChange(e.target.value)}
+				autoComplete={autocomplete}
+				ref={inputRef}
+			/>
+
+			<div className="placeholder">{placeholder}</div>
+		</label>
+	);
+};
 
 interface InputProps {
 	/**
@@ -35,6 +51,10 @@ interface InputProps {
 	 * Autocomplete type
 	 */
 	autocomplete?: string;
+	/**
+	 * Should the input be focused by default ?
+	 */
+	autoFocus?: boolean;
 	/**
 	 * Class of the container
 	 */

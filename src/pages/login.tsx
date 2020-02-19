@@ -54,7 +54,7 @@ const Login = () => {
 						e.preventDefault();
 						tryLogin();
 					}}>
-					<Input type="password" value={password} onChange={setPassword} placeholder="Mot de passe" />
+					<Input type="password" value={password} onChange={setPassword} placeholder="Mot de passe" autoFocus />
 
 					<Button primary type="submit" leftIcon="fas fa-sign-in-alt" className="login-button" spinner={loading}>
 						Se connecter
