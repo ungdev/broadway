@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 import { State } from '../types';
 import { isValidTicket, proceedPayment } from '../utils/tickets';
@@ -163,6 +164,14 @@ const Tickets = () => {
 					e.preventDefault();
 				}}
 				className="content-container">
+				<Info title="Billet perdu ?">
+					Vous avez perdu votre billet ? Vous pouvez le récupérer par email en{' '}
+					<Link href="/billet-perdu">
+						<a className="primary-color">cliquant ici</a>
+					</Link>
+					.
+				</Info>
+
 				<Info title="Informations">
 					<ul>
 						<li>Les informations du premier billet seront utilisées comme coordonnées de facturation.</li>

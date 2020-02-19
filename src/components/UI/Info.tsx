@@ -8,7 +8,7 @@ const Info = ({ title, className, children }: InfoProps) => (
 			<i className="fas fa-info-circle info-icon" /> {title}
 		</div>
 
-		{children}
+		{children && <div className="info-content">{children}</div>}
 	</div>
 );
 

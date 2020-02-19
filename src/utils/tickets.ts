@@ -1,6 +1,7 @@
 import api from './api';
 import { Ticket } from '../types';
 import isEmail from './isEmail';
+import { toast } from 'react-toastify';
 
 export const isValidTicket = (ticket: Ticket, index: number) => {
 	return (
@@ -29,5 +30,17 @@ export const proceedPayment = async (date: string, tickets: Array<Ticket>) => {
 		return true;
 	} catch (err) {
 		return false;
+	}
+};
+
+export const sendTicket = async (email: string) => {
+	try {
+		await api('GET', '/lostTicket', {
+			email,
+		});
+
+		toast.success('Votre billet a été envoyé par email');
+	} catch (err) {
+		toast.error("Erreur lors de l'envoi de l'email");
 	}
 };
