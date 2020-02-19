@@ -7,13 +7,12 @@ const withCss = require('@zeit/next-css');
 const withImages = require('next-images');
 
 // .env config
-const env = require('dotenv').config({
+require('dotenv').config({
 	path: path.resolve(__dirname, '.env'),
-}).parsed;
+});
 
-if (env) {
-	delete env.NODE_ENV;
-}
+const env = Object.assign({}, process.env);
+delete env.NODE_ENV;
 
 // Next config
 const nextJSConfig = {
