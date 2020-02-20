@@ -94,22 +94,14 @@ const Navbar = () => {
 
 				{login && (
 					<div className="logged-in">
-						<Link href="/scan">
-							<a>
-								<Button primary leftIcon="fas fa-qrcode">
-									Scan
-								</Button>
-							</a>
-						</Link>
+						<Button primary leftIcon="fas fa-qrcode" href="/scan">
+							Scan
+						</Button>
 
 						{login.permissions === 'admin' && (
-							<Link href="/admin">
-								<a>
-									<Button primary leftIcon="fas fa-cog" className="admin-button">
-										Admin
-									</Button>
-								</a>
-							</Link>
+							<Button primary leftIcon="fas fa-cog" className="admin-button" href="/admin">
+								Admin
+							</Button>
 						)}
 
 						<Button onClick={() => dispatch(logout(router))} className="logout-button" noStyle>

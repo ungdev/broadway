@@ -1,7 +1,8 @@
 #admin-stats {
 	a {
+		position: relative;
 		display: block;
-		padding: 10px 20px;
+		padding: 10px 35px 10px 20px;
 		margin-bottom: 10px;
 		border: 2px solid #000;
 		background: #fff;
@@ -12,6 +13,16 @@
 		&:hover,
 		&:focus {
 			background: #ddd;
+		}
+
+		&::after {
+			content: '\f054';
+			position: absolute;
+			top: 50%;
+			right: 16px;
+			transform: translateY(-50%);
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 900;
 		}
 	}
 }
