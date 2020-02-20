@@ -114,14 +114,22 @@ const Navbar = () => {
 
 				<footer>
 					<div className="social-links">
-						<a href="https://www.facebook.com/broadwayUTT/" target="_blank" rel="noreferrer noopener">
+						<a
+							href="https://www.facebook.com/broadwayUTT/"
+							target="_blank"
+							rel="noreferrer noopener"
+							aria-label="Facebook">
 							<i className="fab fa-facebook-f" />
 						</a>
-						<a href="https://www.instagram.com/broadwayutt/" target="_blank" rel="noreferrer noopener">
+						<a
+							href="https://www.instagram.com/broadwayutt/"
+							target="_blank"
+							rel="noreferrer noopener"
+							aria-label="Instagram">
 							<i className="fab fa-instagram" />
 						</a>
 						<Link href="/informations">
-							<a>
+							<a aria-label="Contactez-nous">
 								<i className="far fa-envelope" />
 							</a>
 						</Link>
