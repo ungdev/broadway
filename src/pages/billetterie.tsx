@@ -12,8 +12,13 @@ import './billetterie.scss';
 const Tickets = () => {
 	const { paymentEnabled } = useSelector((state: State) => state.items);
 
-	const payCart = (date: string, tickets: Ticket[], email: string) => {
-		return proceedPayment(date || '', tickets, email);
+	const payCart = async (date: string, tickets: Ticket[], email: string) => {
+		const success = await proceedPayment(date || '', tickets, email);
+
+		return {
+			reset: false,
+			spinner: success,
+		};
 	};
 
 	return (

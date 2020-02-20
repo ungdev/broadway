@@ -165,8 +165,16 @@ const TicketsOrder = ({ onSubmit, buttonProps }: TicketsOrderProps) => {
 
 							setButtonLoading(true);
 
-							if (!(await onSubmit(date || '', tickets, emails[0]))) {
+							const submitResult = await onSubmit(date || '', tickets, emails[0]);
+
+							if (!submitResult.spinner) {
 								setButtonLoading(false);
+							}
+
+							if (submitResult.reset) {
+								setDate(null);
+								setEmails(['', '']);
+								setTickets([defaultTicketValue]);
 							}
 						}}
 						className="submit-button"
@@ -181,12 +189,24 @@ const TicketsOrder = ({ onSubmit, buttonProps }: TicketsOrderProps) => {
 	);
 };
 
+interface TicketsOrderReturn {
+	/**
+	 * Should all the input fields be reset ?
+	 */
+	reset: boolean;
+
+	/**
+	 * Should the spinner be displayed ?
+	 */
+	spinner: boolean;
+}
+
 interface TicketsOrderProps {
 	/**
 	 * Triggered when the user clicks on the submit button, after checking that all the inputs are correct.
-	 * The return value indicate if the spinner should continue to be displayed or not
+	 * The return value indicate if the input fields should be reset and if the spinner should be displayed
 	 */
-	onSubmit: (date: string, tickets: Ticket[], email: string) => Promise<boolean>;
+	onSubmit: (date: string, tickets: Ticket[], email: string) => Promise<TicketsOrderReturn>;
 
 	/**
 	 * Props to pass to the submit button

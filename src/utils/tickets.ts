@@ -33,10 +33,10 @@ export const isValidTicket = (ticket: Ticket, index: number, emails: Array<strin
 	return true;
 };
 
-export const proceedPayment = async (date: string, tickets: Array<Ticket>, email: string) => {
+export const proceedPayment = async (date: string, tickets: Array<Ticket>, email: string, forcePay = false) => {
 	try {
 		// Send order to API
-		const res = await api('POST', '/orders', {
+		const res = await api('POST', `/orders${forcePay ? '/forcePay' : ''}`, {
 			firstname: tickets[0].firstname,
 			lastname: tickets[0].lastname,
 			email,
@@ -48,8 +48,10 @@ export const proceedPayment = async (date: string, tickets: Array<Ticket>, email
 			})),
 		});
 
-		// Redirect to etupay to proceed with the payment
-		window.location = res.data.url;
+		if (!forcePay) {
+			// Redirect to etupay to proceed with the payment
+			window.location = res.data.url;
+		}
 
 		return true;
 	} catch (err) {
