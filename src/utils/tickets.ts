@@ -11,7 +11,7 @@ export const isValidTicket = (ticket: Ticket, index: number, emails: Array<strin
 	} else if (!ticket.lastname.trim()) {
 		error = `Veuillez remplir le nom du billet n°${index + 1}`;
 	} else if (!ticket.type) {
-		error = `Veuillez choisir le tarif du billet n°${index + 1}`;
+		error = `Veuillez sélectionner le tarif du billet n°${index + 1}`;
 	} else if (index === 0) {
 		if (!isEmail(emails[0])) {
 			error = 'Veuillez fournir une adresse email valide';

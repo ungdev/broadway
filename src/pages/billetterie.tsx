@@ -1,171 +1,26 @@
-import React, { useState, useEffect, ReactNode } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
 
-import { State } from '../types';
-import { isValidTicket, proceedPayment } from '../utils/tickets';
-import { representations } from '../utils/representations';
-import { fetchItems } from '../utils/items';
-import { Title, Input, Collapse, Button, Radio, Info } from '../components/UI';
+import { State, Ticket } from '../types';
+import { proceedPayment } from '../utils/tickets';
+import { Title, Info } from '../components/UI';
+import TicketsOrder from '../components/TicketsOrder';
 
 import './billetterie.scss';
 
-const defaultTicketValue = {
-	firstname: '',
-	lastname: '',
-	type: '',
-};
-
 const Tickets = () => {
-	const dispatch = useDispatch();
-	const { items, paymentEnabled } = useSelector((state: State) => state.items);
-	const [buttonLoading, setButtonLoading] = useState(false);
-	const [date, setDate] = useState(null as string | null);
-	const [tickets, setTickets] = useState([defaultTicketValue]);
-	const [emails, setEmails] = useState(['', '']);
+	const { paymentEnabled } = useSelector((state: State) => state.items);
 
-	const addTicket = () => {
-		setTickets([...tickets, defaultTicketValue]);
+	const payCart = (date: string, tickets: Ticket[], email: string) => {
+		return proceedPayment(date || '', tickets, email);
 	};
-
-	const deleteTicket = (i: number) => {
-		const updatedTickets = tickets.filter((e, j) => j !== i);
-		setTickets(updatedTickets);
-	};
-
-	const setTicketField = (i: number, field: string, value: string) => {
-		const updatedTickets = tickets.slice();
-		updatedTickets[i] = {
-			...updatedTickets[i],
-			[field]: value,
-		};
-
-		setTickets(updatedTickets);
-	};
-
-	const getTicketName = (ticketId: string) => {
-		return items.find((v) => `${v.id}` === ticketId)?.name;
-	};
-
-	useEffect(() => {
-		dispatch(fetchItems());
-	}, [dispatch]);
-
-	const checkInputs = () => {
-		let valid = true;
-
-		// Check date
-		if (!date) {
-			toast.error('Veuillez choisir une date');
-			return false;
-		}
-
-		// Check tickets
-		tickets.forEach((ticket, i) => {
-			if (!isValidTicket(ticket, i, emails, true)) {
-				valid = false;
-			}
-		});
-
-		return valid;
-	};
-
-	const payCart = async () => {
-		if (buttonLoading) {
-			return;
-		}
-
-		// Check inputs
-		if (!checkInputs()) {
-			return;
-		}
-
-		// Proceed with the payment
-		setButtonLoading(true);
-		if (!(await proceedPayment(date || '', tickets, emails[0]))) {
-			setButtonLoading(false);
-		}
-	};
-
-	let ticketsNode = null as Array<ReactNode> | null;
-
-	if (items.length) {
-		const ticketTypes = items.map((item) => ({
-			name: `${item.name} (${item.price / 100}€)`,
-			value: item.id,
-			description: item.description,
-		}));
-
-		ticketsNode = tickets.map((ticket, i) => {
-			let title = null;
-			if (isValidTicket(ticket, i, emails, false)) {
-				title = (
-					<>
-						{ticket.firstname} {ticket.lastname} <span className="light-text">({getTicketName(ticket.type)})</span>
-					</>
-				);
-			}
-
-			return (
-				<Collapse title={title || <span className="light-text">Nouveau billet</span>} noTopMargin key={i}>
-					<div className="ticket-name-inputs">
-						<Input
-							type="text"
-							placeholder="Prénom"
-							value={ticket.firstname}
-							onChange={(v) => setTicketField(i, 'firstname', v)}
-						/>
-						<Input
-							type="text"
-							placeholder="Nom"
-							value={ticket.lastname}
-							onChange={(v) => setTicketField(i, 'lastname', v)}
-						/>
-					</div>
-
-					{i === 0 && (
-						<>
-							<Input type="email" placeholder="Email" value={emails[0]} onChange={(v) => setEmails([v, emails[1]])} />
-							<Input
-								type="email"
-								placeholder="Confirmez l'email"
-								value={emails[1]}
-								onChange={(v) => setEmails([emails[0], v])}
-							/>
-						</>
-					)}
-
-					<Radio
-						label="Tarif"
-						options={ticketTypes}
-						name={`type-${i}`}
-						value={ticket.type}
-						onChange={(v) => setTicketField(i, 'type', v)}
-						className="ticket-type"
-					/>
-
-					{i !== 0 && (
-						<Button onClick={() => deleteTicket(i)} leftIcon="far fa-trash-alt" className="delete-button">
-							Supprimer
-						</Button>
-					)}
-				</Collapse>
-			);
-		});
-	}
 
 	return (
 		<div id="tickets" className="page-margin">
 			<Title>Billetterie</Title>
 
-			<form
-				noValidate
-				onSubmit={(e) => {
-					payCart();
-					e.preventDefault();
-				}}
-				className="content-container">
+			<form noValidate onSubmit={(e) => e.preventDefault()} className="content-container">
 				<Info title="Billet perdu ?">
 					Vous avez perdu votre billet ? Vous pouvez le récupérer par email en{' '}
 					<Link href="/billet-perdu">
@@ -186,32 +41,8 @@ const Tickets = () => {
 					<div className="payment-disabled">
 						<i className="fas fa-clock" /> L'achat de billets est désactivé pour le moment.
 					</div>
-				) : ticketsNode ? (
-					<>
-						<div className="card">
-							<Radio
-								label="Date de représentation"
-								options={representations}
-								name="date"
-								value={date}
-								onChange={setDate}
-							/>
-						</div>
-
-						{ticketsNode}
-
-						<Button onClick={addTicket} leftIcon="fas fa-plus" className="add-button">
-							Ajouter un billet
-						</Button>
-
-						<Button type="submit" primary leftIcon="fas fa-credit-card" className="pay-button" spinner={buttonLoading}>
-							Payer
-						</Button>
-					</>
 				) : (
-					<div className="loading">
-						<i className="fas fa-spinner fa-spin" /> Chargement...
-					</div>
+					<TicketsOrder onSubmit={payCart} buttonProps={{ leftIcon: 'fas fa-credit-card', children: 'Payer' }} />
 				)}
 			</form>
 		</div>

@@ -25,46 +25,4 @@
 			margin-right: 4px;
 		}
 	}
-
-	.ticket-name-inputs > * {
-		display: inline-block;
-		width: calc(50% - 5px);
-
-		&:first-child {
-			margin-right: 10px;
-		}
-	}
-
-	.ticket-type {
-		margin-top: 20px;
-	}
-
-	.delete-button {
-		float: right;
-		margin: 25px 0 15px 0;
-	}
-
-	.loading {
-		font-size: 1.2em;
-		text-align: center;
-		margin-top: 40px;
-	}
-
-	.add-button {
-		display: block;
-		margin: 20px auto 0 auto;
-	}
-
-	.pay-button {
-		width: 100%;
-		margin-top: 30px;
-	}
-
-	@media screen and (max-width: $tickets-breakpoint) {
-		.ticket-name-inputs > * {
-			display: block;
-			width: 100%;
-			margin-right: 0;
-		}
-	}
 }
