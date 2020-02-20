@@ -14,7 +14,6 @@ import './billetterie.scss';
 const defaultTicketValue = {
 	firstname: '',
 	lastname: '',
-	email: '',
 	type: '',
 };
 
@@ -24,6 +23,7 @@ const Tickets = () => {
 	const [buttonLoading, setButtonLoading] = useState(false);
 	const [date, setDate] = useState(null as string | null);
 	const [tickets, setTickets] = useState([defaultTicketValue]);
+	const [emails, setEmails] = useState(['', '']);
 
 	const addTicket = () => {
 		setTickets([...tickets, defaultTicketValue]);
@@ -57,12 +57,13 @@ const Tickets = () => {
 
 		// Check date
 		if (!date) {
+			toast.error('Veuillez choisir une date');
 			return false;
 		}
 
 		// Check tickets
 		tickets.forEach((ticket, i) => {
-			if (!isValidTicket(ticket, i)) {
+			if (!isValidTicket(ticket, i, emails, true)) {
 				valid = false;
 			}
 		});
@@ -77,14 +78,12 @@ const Tickets = () => {
 
 		// Check inputs
 		if (!checkInputs()) {
-			// Display errors
-			toast.error('Veuillez remplir tous les champs correctement');
 			return;
 		}
 
 		// Proceed with the payment
 		setButtonLoading(true);
-		if (!(await proceedPayment(date || '', tickets))) {
+		if (!(await proceedPayment(date || '', tickets, emails[0]))) {
 			setButtonLoading(false);
 		}
 	};
@@ -100,7 +99,7 @@ const Tickets = () => {
 
 		ticketsNode = tickets.map((ticket, i) => {
 			let title = null;
-			if (isValidTicket(ticket, i)) {
+			if (isValidTicket(ticket, i, emails, false)) {
 				title = (
 					<>
 						{ticket.firstname} {ticket.lastname} <span className="light-text">({getTicketName(ticket.type)})</span>
@@ -126,12 +125,15 @@ const Tickets = () => {
 					</div>
 
 					{i === 0 && (
-						<Input
-							type="email"
-							placeholder="Email"
-							value={ticket.email}
-							onChange={(v) => setTicketField(i, 'email', v)}
-						/>
+						<>
+							<Input type="email" placeholder="Email" value={emails[0]} onChange={(v) => setEmails([v, emails[1]])} />
+							<Input
+								type="email"
+								placeholder="Confirmez l'email"
+								value={emails[1]}
+								onChange={(v) => setEmails([emails[0], v])}
+							/>
+						</>
 					)}
 
 					<Radio

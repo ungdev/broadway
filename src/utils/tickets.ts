@@ -3,19 +3,43 @@ import { Ticket } from '../types';
 import isEmail from './isEmail';
 import { toast } from 'react-toastify';
 
-export const isValidTicket = (ticket: Ticket, index: number) => {
-	return (
-		ticket.firstname.trim() && ticket.lastname.trim() && ticket.type && (index === 0 ? isEmail(ticket.email) : true)
-	);
+export const isValidTicket = (ticket: Ticket, index: number, emails: Array<string>, displayError: boolean) => {
+	let error = '';
+
+	if (!ticket.firstname.trim()) {
+		error = `Veuillez remplir le prénom du billet n°${index + 1}`;
+	} else if (!ticket.lastname.trim()) {
+		error = `Veuillez remplir le nom du billet n°${index + 1}`;
+	} else if (!ticket.type) {
+		error = `Veuillez choisir le tarif du billet n°${index + 1}`;
+	} else if (index === 0) {
+		if (!isEmail(emails[0])) {
+			error = 'Veuillez fournir une adresse email valide';
+		} else if (!isEmail(emails[1])) {
+			error = 'Veuillez confirmer votre adresse email';
+		} else if (emails[0] !== emails[1]) {
+			error = 'Les deux adresses email ne correspondent pas';
+		}
+	}
+
+	if (error) {
+		if (displayError) {
+			toast.error(error);
+		}
+
+		return false;
+	}
+
+	return true;
 };
 
-export const proceedPayment = async (date: string, tickets: Array<Ticket>) => {
+export const proceedPayment = async (date: string, tickets: Array<Ticket>, email: string) => {
 	try {
 		// Send order to API
 		const res = await api('POST', '/orders', {
 			firstname: tickets[0].firstname,
 			lastname: tickets[0].lastname,
-			email: tickets[0].email,
+			email,
 			representation: parseInt(date, 10),
 			users: tickets.map((ticket) => ({
 				firstname: ticket.firstname,

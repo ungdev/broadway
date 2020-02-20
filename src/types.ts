@@ -18,7 +18,6 @@ export interface Item {
 export interface Ticket {
 	firstname: string;
 	lastname: string;
-	email: string;
 	type: string;
 }
 
