@@ -3,6 +3,10 @@
 
 @import '../variables.scss';
 
+.Toastify__toast--warning {
+	background: #f1b500;
+}
+
 body {
 	margin: 0;
 	font-family: 'Roboto', sans-serif;

@@ -10,13 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Navbar from '../components/Navbar';
 import { initStore } from '../store';
-import '../types';
 
 import './_app.scss';
 
 toast.configure({
-	autoClose: 5000,
-	pauseOnHover: true,
 	hideProgressBar: true,
 });
 

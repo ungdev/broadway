@@ -68,6 +68,8 @@ const Scan = () => {
 	const closeValidation = () => {
 		setOrder(null);
 		setCheckedUsers([]);
+
+		toast.warn("Aucune place n'a été scannée");
 	};
 
 	const scanCheckedUsers = async () => {
