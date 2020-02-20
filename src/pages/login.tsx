@@ -29,7 +29,7 @@ const Login = () => {
 
 	useEffect(() => {
 		tryRedirect();
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [isLoggedIn]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const tryLogin = async () => {
 		setLoading(true);
