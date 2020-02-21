@@ -23,7 +23,8 @@ const LostTicket = () => {
 
 			<div className="content-container">
 				<Info title="Vous avez perdu votre billet ?">
-					Vous pouvez récupérer votre billet en indiquant l'adresse email utilisée lors de l'achat
+					Vous pouvez le récupérer en indiquant l'adresse email utilisée lors de l'achat. Nous vous le renverrons par
+					email.
 				</Info>
 
 				<form

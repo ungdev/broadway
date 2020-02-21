@@ -16,7 +16,7 @@ const defaultTicketValue = {
 	type: '',
 };
 
-const TicketsOrder = ({ onSubmit, buttonProps }: TicketsOrderProps) => {
+const TicketsOrder = ({ onSubmit, buttonProps, displayTotal = true }: TicketsOrderProps) => {
 	const dispatch = useDispatch();
 	const { items } = useSelector((state: State) => state.items);
 	const [buttonLoading, setButtonLoading] = useState(false);
@@ -29,8 +29,6 @@ const TicketsOrder = ({ onSubmit, buttonProps }: TicketsOrderProps) => {
 	}, [dispatch]);
 
 	const checkInputs = () => {
-		let valid = true;
-
 		// Check date
 		if (!date) {
 			toast.error('Veuillez choisir une date');
@@ -38,13 +36,7 @@ const TicketsOrder = ({ onSubmit, buttonProps }: TicketsOrderProps) => {
 		}
 
 		// Check tickets
-		tickets.forEach((ticket, i) => {
-			if (!isValidTicket(ticket, i, emails, true)) {
-				valid = false;
-			}
-		});
-
-		return valid;
+		return !tickets.some((ticket, i) => !isValidTicket(ticket, i, emails, true));
 	};
 
 	const addTicket = () => {
@@ -68,6 +60,14 @@ const TicketsOrder = ({ onSubmit, buttonProps }: TicketsOrderProps) => {
 
 	const getTicketName = (ticketId: string) => {
 		return items.find((v) => `${v.id}` === ticketId)?.name;
+	};
+
+	const getTotalPrice = () => {
+		return tickets.reduce((previous, ticket) => {
+			const price = items.find((item) => ticket.type === `${item.id}`)?.price || 0;
+
+			return previous + price / 100;
+		}, 0);
 	};
 
 	const ticketTypes = items.map((item) => ({
@@ -153,6 +153,14 @@ const TicketsOrder = ({ onSubmit, buttonProps }: TicketsOrderProps) => {
 						Ajouter un billet
 					</Button>
 
+					<hr />
+
+					{displayTotal && (
+						<div className="total-price">
+							<strong>Total :</strong> {getTotalPrice()}€
+						</div>
+					)}
+
 					<Button
 						{...buttonProps}
 						type="submit"
@@ -189,29 +197,29 @@ const TicketsOrder = ({ onSubmit, buttonProps }: TicketsOrderProps) => {
 	);
 };
 
-interface TicketsOrderReturn {
-	/**
-	 * Should all the input fields be reset ?
-	 */
-	reset: boolean;
-
-	/**
-	 * Should the spinner be displayed ?
-	 */
-	spinner: boolean;
-}
-
 interface TicketsOrderProps {
 	/**
 	 * Triggered when the user clicks on the submit button, after checking that all the inputs are correct.
 	 * The return value indicate if the input fields should be reset and if the spinner should be displayed
 	 */
-	onSubmit: (date: string, tickets: Ticket[], email: string) => Promise<TicketsOrderReturn>;
+	onSubmit: (
+		date: string,
+		tickets: Ticket[],
+		email: string,
+	) => Promise<{
+		reset: boolean;
+		spinner: boolean;
+	}>;
 
 	/**
 	 * Props to pass to the submit button
 	 */
 	buttonProps: Record<string, string>;
+
+	/**
+	 * Display the total price ?
+	 */
+	displayTotal?: boolean;
 }
 
 export default TicketsOrder;

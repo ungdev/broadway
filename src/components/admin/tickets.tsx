@@ -27,6 +27,7 @@ const AdminTickets = () => {
 					leftIcon: 'fas fa-paper-plane',
 					children: 'Envoyer les billets',
 				}}
+				displayTotal={false}
 			/>
 		</div>
 	);
