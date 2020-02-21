@@ -3,6 +3,14 @@ import { toast } from 'react-toastify';
 
 import { Login } from '../types';
 
+export const hasPermission = (permission: string, login: Login) => {
+	if (login && (login.permissions === permission || login.permissions === 'admin')) {
+		return true;
+	}
+
+	return false;
+};
+
 export const checkPermission = (permission: string, login: Login, router: NextRouter, next?: string) => {
 	if (login === null) {
 		return;
@@ -14,7 +22,7 @@ export const checkPermission = (permission: string, login: Login, router: NextRo
 		} else {
 			router.replace(`/login`);
 		}
-	} else if (login.permissions !== permission && login.permissions !== 'admin') {
+	} else if (!hasPermission(permission, login)) {
 		toast.error('Vous ne pouvez pas accéder à cette page');
 		router.replace('/');
 	}

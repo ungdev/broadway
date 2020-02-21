@@ -8,7 +8,7 @@ import { fetchOrder } from '../utils/orders';
 import { formatDate } from '../utils/date';
 import { fetchItems, getItemName } from '../utils/items';
 import { scanUsers } from '../utils/users';
-import { checkPermission } from '../utils/permission';
+import { checkPermission, hasPermission } from '../utils/permission';
 import { getRepresentation } from '../utils/representations';
 import { Button } from '../components/UI';
 import Loader from '../components/Loader';
@@ -83,7 +83,7 @@ const Scan = () => {
 
 	return (
 		<div id="scan">
-			{login ? (
+			{hasPermission('orga', login) ? (
 				<>
 					<div className="scanner">
 						<div className="scanner-placeholder">

@@ -11,13 +11,13 @@ import './login.scss';
 const Login = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const isLoggedIn = useSelector((state: State) => state.login !== false);
+	const isLoggedIn = useSelector((state: State) => !!state.login);
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
 	const next = router.query.next as string;
 
-	const tryRedirect = () => {
+	useEffect(() => {
 		if (isLoggedIn) {
 			if (next) {
 				router.replace(next);
@@ -25,18 +25,12 @@ const Login = () => {
 				router.replace('/');
 			}
 		}
-	};
-
-	useEffect(() => {
-		tryRedirect();
 	}, [isLoggedIn]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const tryLogin = async () => {
 		setLoading(true);
 
-		if (await dispatch(login(password))) {
-			tryRedirect();
-		} else {
+		if (!(await dispatch(login(password)))) {
 			setLoading(false);
 		}
 	};

@@ -5,6 +5,8 @@ import api from './api';
 import { setLogin } from '../reducers/login';
 import { Dispatch } from '../types';
 
+const permissionPages = ['/scan', '/admin'];
+
 export const login = (password: string) => async (dispatch: Dispatch) => {
 	try {
 		const res = await api('POST', '/auth/login', {
@@ -37,7 +39,9 @@ export const logout = (router: NextRouter) => async (dispatch: Dispatch) => {
 	localStorage.removeItem('broadway-token');
 	localStorage.removeItem('broadway-permissions');
 
-	await router.replace('/');
+	if (permissionPages.includes(router.asPath)) {
+		await router.replace('/');
+	}
 
 	dispatch(setLogin(false));
 

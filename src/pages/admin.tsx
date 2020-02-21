@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import { checkPermission } from '../utils/permission';
+import { checkPermission, hasPermission } from '../utils/permission';
 import { Title, Button } from '../components/UI';
 import { State } from '../types';
 import AdminTickets from '../components/admin/tickets';
@@ -26,7 +26,7 @@ const Admin = () => {
 			<Title>Panneau d'administration</Title>
 
 			<div className="content-container">
-				{login ? (
+				{hasPermission('admin', login) ? (
 					<>
 						<div className="admin-menu">
 							<Button
