@@ -11,6 +11,7 @@ import { scanUsers } from '../utils/users';
 import { checkPermission } from '../utils/permission';
 import { getRepresentation } from '../utils/representations';
 import { Button } from '../components/UI';
+import Loader from '../components/Loader';
 
 import './scan.scss';
 
@@ -82,63 +83,69 @@ const Scan = () => {
 
 	return (
 		<div id="scan">
-			<div className="scanner">
-				<div className="scanner-placeholder">
-					<i className="fas fa-video scanner-placeholder-icon" />
-					Veuillez activer votre caméra
-				</div>
-				<iframe src="/scanner.html" className="scanner-preview" />
-			</div>
-
-			{order && (
-				<div className="validation">
-					<div className="validation-info">
-						<strong>Représentation :</strong> {getRepresentation(order.representation)}
-						<br />
-						<strong>Paiement :</strong> le {formatDate(order.paidAt)} par {order.firstname} {order.lastname} (
-						{order.email})
-						<Button noStyle onClick={closeValidation} leftIcon="fas fa-times" className="validation-close-button" />
+			{login ? (
+				<>
+					<div className="scanner">
+						<div className="scanner-placeholder">
+							<i className="fas fa-video scanner-placeholder-icon" />
+							Veuillez activer votre caméra
+						</div>
+						<iframe src="/scanner.html" className="scanner-preview" />
 					</div>
 
-					<div className="validation-users">
-						{order.users.map((user) => {
-							const checked = checkedUsers.indexOf(user.id) !== -1;
+					{order && (
+						<div className="validation">
+							<div className="validation-info">
+								<strong>Représentation :</strong> {getRepresentation(order.representation)}
+								<br />
+								<strong>Paiement :</strong> le {formatDate(order.paidAt)} par {order.firstname} {order.lastname} (
+								{order.email})
+								<Button noStyle onClick={closeValidation} leftIcon="fas fa-times" className="validation-close-button" />
+							</div>
 
-							return (
-								<div
-									className={`validation-user ${user.isScanned ? 'scanned' : ''} ${checked ? 'checked' : ''}`}
-									key={user.id}
-									onClick={() => {
-										if (!user.isScanned) {
-											toggleUser(user.id);
-										}
-									}}>
-									<span className="validation-user-name">
-										{user.firstname} {user.lastname}
-									</span>
-									{user.isScanned ? <span className="light-text"> (déjà scanné)</span> : ''}
-									<div className="validation-user-type">
-										{user.itemId !== 1 ? (
-											<i className="fas fa-exclamation-triangle validation-user-type-attention" />
-										) : (
-											''
-										)}
-										{getItemName(user.itemId, items)}
-									</div>
-								</div>
-							);
-						})}
-					</div>
+							<div className="validation-users">
+								{order.users.map((user) => {
+									const checked = checkedUsers.indexOf(user.id) !== -1;
 
-					<Button
-						primary
-						leftIcon="fas fa-check"
-						className="validation-button"
-						onClick={scanCheckedUsers}
-						disabled={!checkedUsers.length}>
-						Valider les entrées
-					</Button>
-				</div>
+									return (
+										<div
+											className={`validation-user ${user.isScanned ? 'scanned' : ''} ${checked ? 'checked' : ''}`}
+											key={user.id}
+											onClick={() => {
+												if (!user.isScanned) {
+													toggleUser(user.id);
+												}
+											}}>
+											<span className="validation-user-name">
+												{user.firstname} {user.lastname}
+											</span>
+											{user.isScanned ? <span className="light-text"> (déjà scanné)</span> : ''}
+											<div className="validation-user-type">
+												{user.itemId !== 1 ? (
+													<i className="fas fa-exclamation-triangle validation-user-type-attention" />
+												) : (
+													''
+												)}
+												{getItemName(user.itemId, items)}
+											</div>
+										</div>
+									);
+								})}
+							</div>
+
+							<Button
+								primary
+								leftIcon="fas fa-check"
+								className="validation-button"
+								onClick={scanCheckedUsers}
+								disabled={!checkedUsers.length}>
+								Valider les entrées
+							</Button>
+						</div>
+					)}
+				</>
+			) : (
+				<Loader />
 			)}
 		</div>
 	);

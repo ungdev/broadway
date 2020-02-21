@@ -4,7 +4,11 @@ import { toast } from 'react-toastify';
 import { Login } from '../types';
 
 export const checkPermission = (permission: string, login: Login, router: NextRouter, next?: string) => {
-	if (!login) {
+	if (login === null) {
+		return;
+	}
+
+	if (login === false) {
 		if (next) {
 			router.replace(`/login?next=${next}`);
 		} else {

@@ -6,7 +6,13 @@ declare global {
 	}
 }
 
-export type Login = { token: string; permissions: string } | false;
+export type Login =
+	| {
+			token: string;
+			permissions: string;
+	  }
+	| false // Not logged in
+	| null; // Not fetched for now
 
 export interface Item {
 	id: number;

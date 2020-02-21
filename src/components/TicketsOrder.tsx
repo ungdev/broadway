@@ -6,6 +6,7 @@ import { fetchItems } from '../utils/items';
 import { isValidTicket } from '../utils/tickets';
 import { representations } from '../utils/representations';
 import { Collapse, Input, Radio, Button } from './UI';
+import Loader from './Loader';
 import { Ticket, State } from '../types';
 
 import './TicketsOrder.scss';
@@ -189,9 +190,7 @@ const TicketsOrder = ({ onSubmit, buttonProps, displayTotal = true }: TicketsOrd
 					/>
 				</>
 			) : (
-				<div className="loading">
-					<i className="fas fa-spinner fa-spin" /> Chargement...
-				</div>
+				<Loader />
 			)}
 		</div>
 	);

@@ -28,6 +28,8 @@ export const autoLogin = () => (dispatch: Dispatch) => {
 
 	if (token && permissions) {
 		dispatch(setLogin({ token, permissions }));
+	} else {
+		dispatch(setLogin(false));
 	}
 };
 
