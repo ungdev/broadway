@@ -13,6 +13,8 @@ require('dotenv').config({
 
 const env = Object.assign({}, process.env);
 delete env.NODE_ENV;
+delete env.NODE_VERSION;
+
 
 // Next config
 const nextJSConfig = {
