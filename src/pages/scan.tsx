@@ -69,8 +69,6 @@ const Scan = () => {
 	const closeValidation = () => {
 		setOrder(null);
 		setCheckedUsers([]);
-
-		toast.warn("Aucune place n'a été scannée");
 	};
 
 	const scanCheckedUsers = async () => {
@@ -98,9 +96,23 @@ const Scan = () => {
 							<div className="validation-info">
 								<strong>Représentation :</strong> {getRepresentation(order.representation)}
 								<br />
-								<strong>Paiement :</strong> le {formatDate(order.paidAt)} par {order.firstname} {order.lastname} (
-								{order.email})
-								<Button noStyle onClick={closeValidation} leftIcon="fas fa-times" className="validation-close-button" />
+								{order.forcePay ? (
+									<strong>Billet offert</strong>
+								) : (
+									<>
+										<strong>Paiement :</strong> le {formatDate(order.paidAt)} par {order.firstname} {order.lastname} (
+										{order.email})
+									</>
+								)}
+								<Button
+									noStyle
+									onClick={() => {
+										closeValidation();
+										toast.warn("Aucune place n'a été scannée");
+									}}
+									leftIcon="fas fa-times"
+									className="validation-close-button"
+								/>
 							</div>
 
 							<div className="validation-users">

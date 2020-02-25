@@ -43,6 +43,7 @@ export interface FetchedOrder {
 	email: string;
 	users: Array<User>;
 	paidAt: string;
+	forcePay: boolean;
 }
 
 // Redux
