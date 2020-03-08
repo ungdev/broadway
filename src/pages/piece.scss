@@ -1,0 +1,68 @@
+
+@import '../variables.scss';
+
+#pieceDiv {
+	text-align: center;
+}
+
+#logo1789 {
+	width : 50%;
+	margin-bottom : 30px;
+	margin-top : 10px;
+}
+
+#personnages {
+	border : none;
+	margin-left : 20px;
+	margin-right : 20px;
+}
+
+#personnages h2 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: $title-color;
+	text-align : left;
+	padding-left : 12px;
+}
+
+#personnages p {
+	padding : 10px;
+}
+
+#personnages td {
+	padding-top : 20px;
+	vertical-align: center;
+	display : flex;
+}
+
+.text {
+	width : 65%;
+	float : left;
+	height : 100%;
+	margin : auto;
+}
+
+#personnages img {
+	margin : auto;
+	height : 200px;
+	width : 200px;
+	float : right;
+	vertical-align: center;
+}
+
+@media screen and (max-width:479px) {
+
+	#personnages td {
+		display : inline-block;
+	}
+
+	.text {
+		width : 100%;
+		float : none;
+	}
+
+	#personnages img {
+		float : none;
+	}
+
+}

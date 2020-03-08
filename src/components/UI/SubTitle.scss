@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+
+.title {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: $title-color;
+	text-align: center;
+	margin : 10px;
+}
+
+#centerDiv div {
+	border-top : 2px solid $title-color;
+	border-bottom : 2px solid $title-color;
+	display : inline-block;
+}
+
+#centerDiv {
+	text-align : center;
+}
