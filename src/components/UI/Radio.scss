@@ -11,7 +11,7 @@
 		display: flex;
 		flex-flow: column wrap;
 		align-items: flex-start;
-		margin-left: 8px;
+		margin-left: 6px;
 
 		label {
 			display: flex;
@@ -43,6 +43,7 @@
 			height: 1em;
 			width: 1em;
 			margin-right: 5px;
+			flex-shrink: 0;
 		}
 
 		&:checked {

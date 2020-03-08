@@ -61,12 +61,10 @@ export const proceedPayment = async (date: string, tickets: Array<Ticket>, email
 
 export const sendTicket = async (email: string) => {
 	try {
-		await api('GET', '/lostTicket', {
+		await api('POST', '/orders/resendEmail', {
 			email,
 		});
 
 		toast.success('Votre billet a été envoyé par email');
-	} catch (err) {
-		toast.error("Erreur lors de l'envoi de l'email");
-	}
+	} catch (err) {}
 };

@@ -38,7 +38,7 @@ const Tickets = () => {
 					<ul>
 						<li>Les informations du premier billet seront utilisées comme coordonnées de facturation.</li>
 						<li>L'adresse email vous permettra de recevoir vos billets et de les renvoyer en cas de perte.</li>
-						<li>Pour les tarifs réduit et cotisant, un justificatif vous sera demandé.</li>
+						<li>Un justificatif est susceptible de vous être demandé avant la représentation en fonction du tarif.</li>
 					</ul>
 				</Info>
 

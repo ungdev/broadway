@@ -128,17 +128,19 @@ const Navbar = () => {
 							aria-label="Instagram">
 							<i className="fab fa-instagram" />
 						</a>
-						<Link href="/informations">
+						<Link href="/informations#contact">
 							<a aria-label="Contactez-nous">
 								<i className="far fa-envelope" />
 							</a>
 						</Link>
 					</div>
-
 					<div className="copyright">Tous droits réservés &copy; {year} - Broadway&nbsp;UTT</div>
-
 					<Link href="/mentions-legales">
 						<a className="legal-link">Mentions légales</a>
+					</Link>
+					{' - '}
+					<Link href="/informations#contact">
+						<a className="legal-link">Nous contacter</a>
 					</Link>
 				</footer>
 			</div>

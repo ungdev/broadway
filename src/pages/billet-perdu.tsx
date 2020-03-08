@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { sendTicket as _sendTicket } from '../utils/tickets';
 import { Title, Input, Button, Info } from '../components/UI';
+import isEmail from '../utils/isEmail';
 
 import './billet-perdu.scss';
 
@@ -10,6 +12,11 @@ const LostTicket = () => {
 	const [loading, setLoading] = useState(false);
 
 	const sendTicket = async () => {
+		if (!isEmail(email)) {
+			toast.error("L'adresse email n'est pas valide");
+			return;
+		}
+
 		setLoading(true);
 
 		await _sendTicket(email);
