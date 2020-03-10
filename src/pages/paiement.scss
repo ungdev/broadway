@@ -1,0 +1,36 @@
+#payment {
+	text-align: center;
+	margin-top: 80px;
+
+	.status {
+		font-size: 1.4em;
+
+		[class$='-icon'] {
+			display: block;
+			font-size: 2em;
+			margin-bottom: 20px;
+		}
+
+		.success-icon {
+			color: #00c800;
+		}
+
+		.error-icon {
+			color: #f00;
+		}
+
+		.invalid-icon {
+			color: #888;
+		}
+
+		.more-info {
+			margin-top: 10px;
+			font-size: 1rem;
+			color: #777;
+		}
+	}
+
+	.back-button {
+		margin-top: 50px;
+	}
+}
