@@ -60,6 +60,18 @@ hr {
 	color: $primary-color;
 }
 
+.betterPara {
+	text-align: justify;
+	font-size: 18px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-left: 40px;
+	padding-right: 40px;
+	color: #1a1a1a;
+	line-height: 1.4;
+	margin: 0;
+}
+
 #error .content-container {
 	padding-top: 10px;
 	text-align: center;

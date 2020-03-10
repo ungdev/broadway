@@ -7,6 +7,7 @@ import Input from './Input';
 import Modal from './Modal';
 import Radio from './Radio';
 import Select from './Select';
+import SubTitle from './SubTitle';
 import Table from './Table';
 import Tabs from './Tabs';
 import Textarea from './Textarea';
@@ -23,6 +24,7 @@ export {
 	Modal,
 	Radio,
 	Select,
+	SubTitle,
 	Table,
 	Tabs,
 	Textarea,
