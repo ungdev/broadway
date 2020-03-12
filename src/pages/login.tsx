@@ -47,7 +47,8 @@ const Login = () => {
 					onSubmit={(e) => {
 						e.preventDefault();
 						tryLogin();
-					}}>
+					}}
+					className="form-container">
 					<Input type="password" value={password} onChange={setPassword} placeholder="Mot de passe" autoFocus />
 
 					<Button primary type="submit" leftIcon="fas fa-sign-in-alt" className="login-button" spinner={loading}>

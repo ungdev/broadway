@@ -39,7 +39,8 @@ const LostTicket = () => {
 					onSubmit={(e) => {
 						e.preventDefault();
 						sendTicket();
-					}}>
+					}}
+					className="form-container">
 					<Input type="email" placeholder="Email" value={email} onChange={setEmail} />
 
 					<Button primary type="submit" leftIcon="fas fa-paper-plane" spinner={loading} className="send-button">

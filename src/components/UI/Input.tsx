@@ -17,7 +17,7 @@ const Input = ({ type, placeholder, value, onChange, autocomplete, autoFocus, cl
 	return (
 		<label className={`input ${className || ''}`}>
 			<input
-				type={type}
+				type={type || 'text'}
 				value={value}
 				onChange={(e) => onChange(e.target.value)}
 				autoComplete={autocomplete}
@@ -33,7 +33,7 @@ interface InputProps {
 	/**
 	 * Input type
 	 */
-	type: 'text' | 'email' | 'password';
+	type?: 'text' | 'email' | 'password';
 	/**
 	 * Placeholder to display
 	 */

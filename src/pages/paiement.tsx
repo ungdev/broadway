@@ -1,9 +1,10 @@
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import './paiement.scss';
-import Link from 'next/link';
 import { Button } from '../components/UI';
+
+import './paiement.scss';
 
 const Paiement = () => {
 	const status = useRouter().query.status;
