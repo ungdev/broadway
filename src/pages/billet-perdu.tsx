@@ -21,6 +21,7 @@ const LostTicket = () => {
 
 		await _sendTicket(email);
 
+		setEmail('');
 		setLoading(false);
 	};
 

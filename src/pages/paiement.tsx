@@ -16,6 +16,11 @@ const Paiement = () => {
 					<>
 						<i className="fas fa-check-circle success-icon" />
 						Votre commande a bien été validée
+						<div className="more-info">
+							Vous avez reçu votre billet par email.
+							<br />
+							Vous devrez le présenter imprimé ou sur smartphone avant la représentation.
+						</div>
 					</>
 				) : status === 'error' ? (
 					<>

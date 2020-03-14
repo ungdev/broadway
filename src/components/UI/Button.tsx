@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
+import Link from 'next/link';
 
 import './Button.scss';
-import Link from 'next/link';
 
 /**
  * Displays a button that triggers an action when clicked
@@ -22,9 +22,9 @@ const Button = ({
 	const button = (
 		<button
 			type={type || 'button'}
-			className={`button ${className || ''} ${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''} ${
-				!children ? 'empty' : ''
-			} ${spinner ? 'spinner' : ''}`}
+			className={`button ${className || ''}
+				${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''}
+				${!children ? 'empty' : ''} ${spinner ? 'spinner' : ''}`}
 			onClick={onClick}
 			disabled={disabled}>
 			{leftIcon && <i className={`button-icon-left ${leftIcon}`} />}
