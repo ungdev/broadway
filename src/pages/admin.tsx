@@ -6,7 +6,7 @@ import { checkPermission, hasPermission } from '../utils/permission';
 import { Title, Button } from '../components/UI';
 import { State } from '../types';
 import AdminTickets from '../components/admin/tickets';
-import AdminEmails from '../components/admin/email';
+import AdminEmails from '../components/admin/emails';
 import AdminStats from '../components/admin/stats';
 import Loader from '../components/Loader';
 
