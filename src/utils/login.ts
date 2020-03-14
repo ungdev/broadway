@@ -24,12 +24,22 @@ export const login = (password: string) => async (dispatch: Dispatch) => {
 	}
 };
 
-export const autoLogin = () => (dispatch: Dispatch) => {
+export const autoLogin = () => async (dispatch: Dispatch) => {
 	const token = localStorage.getItem('broadway-token');
 	const permissions = localStorage.getItem('broadway-permissions');
 
 	if (token && permissions) {
 		dispatch(setLogin({ token, permissions }));
+
+		// Check if the token is valid
+		try {
+			await api('GET', '/auth/check', {}, false);
+		} catch (err) {
+			localStorage.removeItem('broadway-token');
+			localStorage.removeItem('broadway-permissions');
+
+			dispatch(setLogin(false));
+		}
 	} else {
 		dispatch(setLogin(false));
 	}

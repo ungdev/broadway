@@ -1,7 +1,7 @@
 import axios, { Method, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 
-export default async (method: Method, url: string, data?: object) =>
+export default async (method: Method, url: string, data = {}, displayError = true) =>
 	new Promise<AxiosResponse>((resolve, reject) => {
 		axios
 			.request({
@@ -13,11 +13,14 @@ export default async (method: Method, url: string, data?: object) =>
 				timeout: 5000,
 				method,
 				url,
-				data: data || {},
+				data,
 			})
 			.then((res) => resolve(res))
 			.catch((err) => {
-				toast.error(err.response ? err.response.data.error : 'Une erreur est survenue');
+				if (displayError) {
+					toast.error(err.response ? err.response.data.error : 'Une erreur est survenue');
+				}
+
 				reject();
 			});
 	});
