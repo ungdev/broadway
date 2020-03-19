@@ -1,0 +1,92 @@
+@import '../variables.scss';
+
+.topDivInfo {
+	padding-top : 10px;
+	text-align : center;
+}
+
+#infosTable {
+	text-align : center;
+	border: none;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+	width:95%;
+}
+
+#infosTable h2 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: $title-color;
+	text-align: left;
+	padding-left: 12px;
+	margin-left:30px;
+}
+
+#infosTableTd {
+	vertical-align: center;
+	display: flex;
+}
+
+.text {
+	width: 50%;
+	float: left;
+	height: 100%;
+	text-align : center;
+}
+
+iframe {
+	margin: auto;
+	height: 300px;
+	width: 35%;
+	float: right;
+	vertical-align: center;
+}
+
+#contact {
+	margin-left: 0px;
+}
+
+#acces {
+	width: 90%;
+	padding : 20px;
+	display : inline-block;
+}
+
+#acces img {
+	width:70px;
+}
+
+#acces td:first-child {
+	float : left;
+}
+
+#acces td:last-child{
+	width: 75%;
+	text-align : left;
+}
+
+@media screen and (max-width: $navbar-breakpoint) {
+	#infosTableTd {
+		display: inline-block;
+		width:100%;
+	}
+
+	#acces {
+		text-align : center;
+	}
+
+	.text {
+		width: 100%;
+		float: none;
+	}
+
+	#acces td:first-child {
+		float : left;
+	}
+
+	#infosTable iframe {
+		float: none;
+		width: 90%;
+	}
+}
