@@ -5,6 +5,67 @@
 	text-align : center;
 }
 
+//social nets
+.entry-social {
+	color: rgb(126, 126, 126);
+	display: block;
+	font-family: 'Open Sans',Tahoma, Verdana, Arial, sans-serif, Faruma, Faseyha;
+	font-size: 14px;
+	font-weight: normal;
+	line-height:23.799999237060547px;
+	border: solid 0px #aaa;
+	float : left;
+	margin-left: 40px;
+	margin-bottom : 10px;
+}
+
+.entry-social div {
+	display: block;
+	width:138px;
+	margin:2px;
+	display: inline-block;
+}
+
+.entry-social a {
+	text-decoration:none;display: block;padding-left: 20px;color: #FFFFFF !important;font-weight: bold;transition:background-color .3s;
+}
+
+.entry-social .fb a {
+	padding: 7px 4px 7px 4px;
+	background: #3B5999;
+}
+
+.entry-social .insta a {
+	padding: 7px 4px 7px 4px;
+	background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.entry-social .mail a {
+	padding: 7px 4px 7px 4px;
+	background: #9da0a3;
+}
+
+.entry-social .insta i, .entry-social .fb i, .entry-social .mail i {
+	padding: 0px 15px 0px 10px;
+}
+
+.entry-social .insta a:hover {
+	background: linear-gradient(45deg, #e6683c 0%, #dc2743 25%, #cc2366 50%, #bc1888 75%, #80095e 100%);
+}
+
+.entry-social .fb a:hover {
+	background-color: rgb(50, 75, 129);
+}
+
+.entry-social .mail a:hover {
+	background-color: rgb(121, 124, 128);
+}
+
+.socialText {
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
 #infosTable {
 	text-align : center;
 	border: none;
@@ -28,14 +89,14 @@
 	display: flex;
 }
 
-.text {
+#infosTableTd div {
 	width: 50%;
 	float: left;
 	height: 100%;
 	text-align : center;
 }
 
-iframe {
+#googleMap {
 	margin: auto;
 	height: 300px;
 	width: 35%;
@@ -45,6 +106,8 @@ iframe {
 
 #contact {
 	margin-left: 0px;
+	text-align: left;
+	padding-bottom: 20px;
 }
 
 #acces {
@@ -53,8 +116,13 @@ iframe {
 	display : inline-block;
 }
 
-#acces img {
-	width:70px;
+#acces i {
+	padding:10px;
+	color: $primary-color;
+}
+
+#acces .fa-calendar-alt {
+	padding-left: 20px;
 }
 
 #acces td:first-child {
@@ -63,6 +131,7 @@ iframe {
 
 #acces td:last-child{
 	width: 75%;
+	padding-left: 10px;
 	text-align : left;
 }
 
@@ -72,11 +141,15 @@ iframe {
 		width:100%;
 	}
 
+	#infosTableTd div {
+		width:100%;
+	}
+
 	#acces {
 		text-align : center;
 	}
 
-	.text {
+	#infoTable .text {
 		width: 100%;
 		float: none;
 	}
@@ -85,8 +158,9 @@ iframe {
 		float : left;
 	}
 
-	#infosTable iframe {
+	#googleMap {
 		float: none;
 		width: 90%;
+		height : 300px;
 	}
 }
