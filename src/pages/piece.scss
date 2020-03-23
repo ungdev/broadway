@@ -34,14 +34,14 @@
 	display: flex;
 }
 
-.text {
+#personnages .text {
 	width: 65%;
 	float: left;
 	height: 100%;
 	margin: auto;
 }
 
-td img {
+#personnages td img {
 	margin: auto;
 	height: 200px;
 	width: 200px;
@@ -50,16 +50,20 @@ td img {
 }
 
 @media screen and (max-width: 479px) {
+	#logo1789 {
+		width: 90%;
+	}
+
 	#personnages td {
 		display: inline-block;
 	}
 
-	.text {
+	#personnages .text {
 		width: 100%;
 		float: none;
 	}
 
-	#personnages img {
+	#personnages td img {
 		float: none;
 	}
 }
