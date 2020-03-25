@@ -1,51 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Partners.scss';
 
 const Partners = () => {
-	const [partners, setPartners] = useState([]);
+	const [partners, setPartners] = useState<JSX.Element[]>([]);
 
-	const fetchPartners = () => {
+	useEffect(() => {
 		const partnersList = [
 			{
-				url: 'a',
-				name: 'a',
-				image: 'a',
+				url: 'https://www-fondation.utt.fr/',
+				name: 'Fondation UTT',
+				image: 'fondation_utt.jpg',
 			},
 			{
-				url: 'b',
-				name: 'b',
-				image: 'b',
+				url: 'https://bde.utt.fr/fr',
+				name: 'BDE UTT',
+				image: 'bde_utt.jpg',
+			},
+			{
+				url: 'https://www.tencymusic.fr/',
+				name: 'Tency Music',
+				image: 'tency.png',
+			},
+			{
+				url: 'https://www.versionkaraoke.fr/',
+				name: 'Version Karaoké',
+				image: 'version.png',
+			},
+			{
+				url: 'https://www.jcdecaux.fr/',
+				name: 'JCDecaux',
+				image: 'decaux.png',
 			},
 		];
 
 		const partnersHtml = partnersList.map((partner, i) => (
-			<a href={partner.url} className="partner-link" key={i}>
+			<a href={partner.url} target="_blank" rel="noopener noreferrer" className="partner-link" key={i}>
 				<div className="partner" data-name={partner.name}>
 					<div className="partner-image">
-						<img src={`${process.env.REACT_APP_API}${partner.image}`} alt={partner.name} />
+						<img src={`/images/${partner.image}`} alt={partner.name} />
 					</div>
 				</div>
 			</a>
 		));
 
 		setPartners(partnersHtml);
-	};
-
-	fetchPartners();
+	}, []);
 
 	return (
-		<div className="page-container" id="partners">
-			<h1 className="centered">Partenaires</h1>
-			<hr />
-
-			{partners && partners.length ? (
-				<div className="partners-list">{partners}</div>
-			) : (
-				<div className="partners-loader">
-					<i className="fas fa-spinner fa-spin"></i>
-				</div>
-			)}
+		<div id="partners">
+			<div className="partners-list">{partners}</div>
 		</div>
 	);
 };
