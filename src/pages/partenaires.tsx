@@ -1,7 +1,15 @@
 import React from 'react';
 
 import { Title } from '../components/UI';
+import Partners from '../components/Partners';
 
-const Partners = () => <Title>Nos partenaires</Title>;
+const PartnersPage = () => {
+	return (
+		<>
+			<Title>Nos partenaires</Title>
+			<Partners />
+		</>
+	);
+};
 
-export default Partners;
+export default PartnersPage;
