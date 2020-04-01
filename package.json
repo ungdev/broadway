@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"license": "MIT",
 	"dependencies": {
-		"@types/node": "^13.1.8",
+		"@types/node": "^13.9.8",
 		"@types/react": "^16.9.31",
 		"@types/react-redux": "^7.1.6",
 		"@types/redux-logger": "^3.0.7",
