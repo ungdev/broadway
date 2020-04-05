@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+@import '../variables.scss';
+
+.Toastify__toast--warning {
+	background: #f1b500;
+}
+
+body {
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	overflow-x: hidden;
+}
+
+main {
+	position: absolute;
+	top: 0;
+	left: $navbar-width;
+	min-height: 100vh;
+	width: calc(100% - #{$navbar-width});
+	background: #efefef;
+	z-index: 0;
+
+	@media screen and (max-width: $navbar-breakpoint) {
+		top: $navbar-mobile-height;
+		left: 0;
+		width: 100%;
+		min-height: calc(100vh - #{$navbar-mobile-height});
+	}
+}
+
+hr {
+	border: 1px solid $primary-color;
+}
+
+.page-margin {
+	margin-bottom: 30px;
+}
+
+.content-container {
+	width: calc(100% - 20px);
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.card,
+.form-container {
+	box-shadow: $shadow;
+	background-color: #fff;
+}
+
+.form-container {
+	padding: 10px 20px 20px 20px;
+}
+
+.card {
+	padding: 16px;
+	margin-bottom: 16px;
+}
+
+.light-text {
+	color: #777;
+}
+
+.primary-color {
+	color: $primary-color;
+}
+
+.betterPara {
+	text-align: justify;
+	font-size: 18px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-left: 40px;
+	padding-right: 40px;
+	color: #1a1a1a;
+	line-height: 1.4;
+	margin: 0;
+}
+
+#error .content-container {
+	padding-top: 10px;
+	text-align: center;
+
+	.button {
+		margin-top: 30px;
+	}
+}
+
+@keyframes spin-center {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}

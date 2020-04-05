@@ -1,29 +1,31 @@
-// Always restart the dev server if you edit this file
-// For "Port 8080 is already in use." -> taskkill /F /IM node.exe (Windows only)
-
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 
 const withPlugins = require('next-compose-plugins');
-const withCSS = require('@zeit/next-css');
+const withSass = require('@zeit/next-sass');
+const withCss = require('@zeit/next-css');
 const withImages = require('next-images');
 
 // .env config
 require('dotenv').config({
-  path: path.resolve(__dirname, '.env'),
+	path: path.resolve(__dirname, '.env'),
 });
+
+const env = Object.assign({}, process.env);
+delete env.NODE_ENV;
+delete env.NODE_VERSION;
+
 
 // Next config
 const nextJSConfig = {
-  webpack: (c) => {
-    const config = c;
-    config.plugins = config.plugins || [];
-
-    return config;
-  },
-  useFileSystemPublicRoutes: false,
+	env,
+	webpack: (config) => ({
+		...config,
+		plugins: config.plugins || [],
+	}),
 };
 
-module.exports = withPlugins(
-  [withCSS, withImages],
-  nextJSConfig,
-);
+// eslint-disable-next-line no-console
+console.log(`Starting application with NODE_ENV=${process.env.NODE_ENV}`);
+
+module.exports = withPlugins([withCss, withSass, withImages], nextJSConfig);

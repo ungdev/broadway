@@ -1,0 +1,54 @@
+@import '../../variables.scss';
+
+label.input,
+label.textarea {
+	display: block;
+	position: relative;
+	margin-top: 26px;
+	line-height: 22px;
+
+	textarea {
+		resize: vertical;
+		min-height: 90px;
+	}
+
+	input,
+	textarea {
+		width: calc(100% - 20px);
+		padding: 10px;
+		font-size: inherit;
+		font-family: inherit;
+		background: #f0f0f0;
+		border: none;
+		border-bottom: 2px solid #ccc;
+		border-radius: 0;
+		transition: all 0.3s;
+
+		& + .placeholder {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 10px;
+			color: #444;
+			cursor: text;
+			user-select: none;
+			transition: all 0.3s;
+		}
+	}
+
+	input:focus,
+	textarea:focus {
+		border-bottom: 2px solid $primary-color;
+	}
+
+	input:focus,
+	textarea:focus,
+	input:not([value='']),
+	textarea:not(:empty) {
+		& + .placeholder {
+			top: -22px;
+			padding: 0 4px;
+			font-size: 0.8em;
+		}
+	}
+}

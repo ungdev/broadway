@@ -1,0 +1,28 @@
+@import '../../variables.scss';
+
+#admin-stats {
+	a {
+		position: relative;
+		display: block;
+		padding: 12px 35px 12px 20px;
+		margin-bottom: 10px;
+		color: #000;
+		text-decoration: none;
+		transition: all 0.3s;
+
+		&:hover,
+		&:focus {
+			background: #eee;
+		}
+
+		&::after {
+			content: '\f054';
+			position: absolute;
+			top: 50%;
+			right: 16px;
+			transform: translateY(-50%);
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 900;
+		}
+	}
+}

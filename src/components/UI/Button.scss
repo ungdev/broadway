@@ -1,0 +1,72 @@
+@import '../../variables.scss';
+
+.button {
+	position: relative;
+	display: inline-block;
+	border: $button-border;
+	border-radius: 0;
+	padding: 8px 20px;
+	background: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1em;
+	cursor: pointer;
+	user-select: none;
+	transition: all 0.3s;
+
+	&.primary {
+		color: #fff;
+		border: none;
+		padding: 10px 22px;
+		background: $primary-color;
+	}
+
+	&:not(.primary):disabled {
+		background: #eee;
+		cursor: default;
+	}
+
+	&.primary:disabled {
+		filter: grayscale(0.4) brightness(0.7);
+		cursor: default;
+	}
+
+	&.no-style {
+		border: none;
+		background: none;
+		font-size: 1em;
+		padding: 0;
+		margin: 0;
+	}
+
+	&:not(:disabled):hover {
+		filter: brightness(0.85);
+	}
+
+	&:not(.empty) {
+		.button-icon-left {
+			margin-right: 8px;
+		}
+
+		.button-icon-right {
+			margin-left: 8px;
+		}
+	}
+
+	&.spinner {
+		color: transparent;
+
+		&::before {
+			content: '\f110';
+			position: absolute;
+			display: inline-block;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 900;
+			font-size: 1.2em;
+			color: #fff;
+			animation: spin-center linear 2s infinite;
+		}
+	}
+}

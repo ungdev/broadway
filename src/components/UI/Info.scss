@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.info {
+	padding: 16px;
+	text-align: justify;
+	background: $secondary-color;
+	border-radius: 4px;
+	border: 2px solid #5555;
+
+	.info-title {
+		color: $primary-color;
+		font-weight: bold;
+
+		.info-icon {
+			margin-right: 4px;
+		}
+	}
+
+	.info-content {
+		margin-top: 8px;
+	}
+}
